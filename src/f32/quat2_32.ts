@@ -1,6 +1,6 @@
-import * as quat_fns from "./quat.js";
-import * as mat4_fns from "./mat4.js";
-import * as vec4_fns from "./vec4.js";
+import * as quat_fns from './quat_32.js';
+import * as mat4_fns from './mat4_32.js';
+import * as vec4_fns from './vec4_32.js';
 import { type quat2_32, type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32, type ReadonlyQuat2_32 } from './types_32.js';
 
 /**
