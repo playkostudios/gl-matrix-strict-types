@@ -1,4 +1,4 @@
-import { type vec3, type ReadonlyMat4, type ReadonlyVec3, type ReadonlyQuat } from "./types.js";
+import { type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from './types_32.js';
 
 /**
  * 3 Dimensional Vector
@@ -6,21 +6,21 @@ import { type vec3, type ReadonlyMat4, type ReadonlyVec3, type ReadonlyQuat } fr
  */
 
 /**
- * Creates a new, empty vec3
+ * Creates a new, empty vec3_32
  *
- * @returns {vec3} a new 3D vector
+ * @returns {vec3_32} a new 3D vector
  */
-export function create(): vec3 {
+export function create(): vec3_32 {
   return new Float32Array(3);
 }
 
 /**
- * Creates a new vec3 initialized with values from an existing vector
+ * Creates a new vec3_32 initialized with values from an existing vector
  *
- * @param {ReadonlyVec3} a vector to clone
- * @returns {vec3} a new 3D vector
+ * @param {ReadonlyVec3_32} a vector to clone
+ * @returns {vec3_32} a new 3D vector
  */
-export function clone(a: ReadonlyVec3): vec3 {
+export function clone(a: ReadonlyVec3_32): vec3_32 {
   const out = new Float32Array(3);
   out[0] = a[0];
   out[1] = a[1];
@@ -29,12 +29,12 @@ export function clone(a: ReadonlyVec3): vec3 {
 }
 
 /**
- * Calculates the length of a vec3
+ * Calculates the length of a vec3_32
  *
- * @param {ReadonlyVec3} a vector to calculate length of
+ * @param {ReadonlyVec3_32} a vector to calculate length of
  * @returns {Number} length of a
  */
-export function length(a: ReadonlyVec3): number {
+export function length(a: ReadonlyVec3_32): number {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -42,14 +42,14 @@ export function length(a: ReadonlyVec3): number {
 }
 
 /**
- * Creates a new vec3 initialized with the given values
+ * Creates a new vec3_32 initialized with the given values
  *
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
- * @returns {vec3} a new 3D vector
+ * @returns {vec3_32} a new 3D vector
  */
-export function fromValues(x: number, y: number, z: number): vec3 {
+export function fromValues(x: number, y: number, z: number): vec3_32 {
   const out = new Float32Array(3);
   out[0] = x;
   out[1] = y;
@@ -58,39 +58,39 @@ export function fromValues(x: number, y: number, z: number): vec3 {
 }
 
 /**
- * Copy the values from one vec3 to another
+ * Copy the values from one vec3_32 to another
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the source vector
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the source vector
  */
-export function copy(out: vec3, a: ReadonlyVec3): void {
+export function copy(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
 }
 
 /**
- * Set the components of a vec3 to the given values
+ * Set the components of a vec3_32 to the given values
  *
- * @param {vec3} out the receiving vector
+ * @param {vec3_32} out the receiving vector
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
  */
-export function set(out: vec3, x: number, y: number, z: number): void {
+export function set(out: vec3_32, x: number, y: number, z: number): void {
   out[0] = x;
   out[1] = y;
   out[2] = z;
 }
 
 /**
- * Adds two vec3's
+ * Adds two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function add(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function add(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = a[0] + b[0];
   out[1] = a[1] + b[1];
   out[2] = a[2] + b[2];
@@ -99,139 +99,139 @@ export function add(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
 /**
  * Subtracts vector b from vector a
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function subtract(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function subtract(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = a[0] - b[0];
   out[1] = a[1] - b[1];
   out[2] = a[2] - b[2];
 }
 
 /**
- * Multiplies two vec3's
+ * Multiplies two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function multiply(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function multiply(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = a[0] * b[0];
   out[1] = a[1] * b[1];
   out[2] = a[2] * b[2];
 }
 
 /**
- * Divides two vec3's
+ * Divides two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function divide(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function divide(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = a[0] / b[0];
   out[1] = a[1] / b[1];
   out[2] = a[2] / b[2];
 }
 
 /**
- * Math.ceil the components of a vec3
+ * Math.ceil the components of a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to ceil
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to ceil
  */
-export function ceil(out: vec3, a: ReadonlyVec3): void {
+export function ceil(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = Math.ceil(a[0]);
   out[1] = Math.ceil(a[1]);
   out[2] = Math.ceil(a[2]);
 }
 
 /**
- * Math.floor the components of a vec3
+ * Math.floor the components of a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to floor
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to floor
  */
-export function floor(out: vec3, a: ReadonlyVec3): void {
+export function floor(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = Math.floor(a[0]);
   out[1] = Math.floor(a[1]);
   out[2] = Math.floor(a[2]);
 }
 
 /**
- * Returns the minimum of two vec3's
+ * Returns the minimum of two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function min(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function min(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = Math.min(a[0], b[0]);
   out[1] = Math.min(a[1], b[1]);
   out[2] = Math.min(a[2], b[2]);
 }
 
 /**
- * Returns the maximum of two vec3's
+ * Returns the maximum of two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function max(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function max(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   out[0] = Math.max(a[0], b[0]);
   out[1] = Math.max(a[1], b[1]);
   out[2] = Math.max(a[2], b[2]);
 }
 
 /**
- * symmetric round the components of a vec3
+ * symmetric round the components of a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to round
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to round
  */
-export function round(out: vec3, a: ReadonlyVec3): void {
+export function round(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = Math.round(a[0]);
   out[1] = Math.round(a[1]);
   out[2] = Math.round(a[2]);
 }
 
 /**
- * Scales a vec3 by a scalar number
+ * Scales a vec3_32 by a scalar number
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the vector to scale
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the vector to scale
  * @param {Number} b amount to scale the vector by
  */
-export function scale(out: vec3, a: ReadonlyVec3, b: number): void {
+export function scale(out: vec3_32, a: ReadonlyVec3_32, b: number): void {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   out[2] = a[2] * b;
 }
 
 /**
- * Adds two vec3's after scaling the second operand by a scalar value
+ * Adds two vec3_32's after scaling the second operand by a scalar value
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @param {Number} scale the amount to scale b by before adding
  */
-export function scaleAndAdd(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, scale: number): void {
+export function scaleAndAdd(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, scale: number): void {
   out[0] = a[0] + b[0] * scale;
   out[1] = a[1] + b[1] * scale;
   out[2] = a[2] + b[2] * scale;
 }
 
 /**
- * Calculates the euclidian distance between two vec3's
+ * Calculates the euclidian distance between two vec3_32's
  *
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @returns {Number} distance between a and b
  */
-export function distance(a: ReadonlyVec3, b: ReadonlyVec3): number {
+export function distance(a: ReadonlyVec3_32, b: ReadonlyVec3_32): number {
   const x = b[0] - a[0];
   const y = b[1] - a[1];
   const z = b[2] - a[2];
@@ -239,13 +239,13 @@ export function distance(a: ReadonlyVec3, b: ReadonlyVec3): number {
 }
 
 /**
- * Calculates the squared euclidian distance between two vec3's
+ * Calculates the squared euclidian distance between two vec3_32's
  *
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @returns {Number} squared distance between a and b
  */
-export function squaredDistance(a: ReadonlyVec3, b: ReadonlyVec3): number {
+export function squaredDistance(a: ReadonlyVec3_32, b: ReadonlyVec3_32): number {
   const x = b[0] - a[0];
   const y = b[1] - a[1];
   const z = b[2] - a[2];
@@ -253,12 +253,12 @@ export function squaredDistance(a: ReadonlyVec3, b: ReadonlyVec3): number {
 }
 
 /**
- * Calculates the squared length of a vec3
+ * Calculates the squared length of a vec3_32
  *
- * @param {ReadonlyVec3} a vector to calculate squared length of
+ * @param {ReadonlyVec3_32} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-export function squaredLength(a: ReadonlyVec3): number {
+export function squaredLength(a: ReadonlyVec3_32): number {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -266,36 +266,36 @@ export function squaredLength(a: ReadonlyVec3): number {
 }
 
 /**
- * Negates the components of a vec3
+ * Negates the components of a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to negate
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to negate
  */
-export function negate(out: vec3, a: ReadonlyVec3): void {
+export function negate(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = -a[0];
   out[1] = -a[1];
   out[2] = -a[2];
 }
 
 /**
- * Returns the inverse of the components of a vec3
+ * Returns the inverse of the components of a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to invert
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to invert
  */
-export function inverse(out: vec3, a: ReadonlyVec3): void {
+export function inverse(out: vec3_32, a: ReadonlyVec3_32): void {
   out[0] = 1.0 / a[0];
   out[1] = 1.0 / a[1];
   out[2] = 1.0 / a[2];
 }
 
 /**
- * Normalize a vec3
+ * Normalize a vec3_32
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a vector to normalize
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a vector to normalize
  */
-export function normalize(out: vec3, a: ReadonlyVec3): void {
+export function normalize(out: vec3_32, a: ReadonlyVec3_32): void {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -310,24 +310,24 @@ export function normalize(out: vec3, a: ReadonlyVec3): void {
 }
 
 /**
- * Calculates the dot product of two vec3's
+ * Calculates the dot product of two vec3_32's
  *
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @returns {Number} dot product of a and b
  */
-export function dot(a: ReadonlyVec3, b: ReadonlyVec3): number {
+export function dot(a: ReadonlyVec3_32, b: ReadonlyVec3_32): number {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
 /**
- * Computes the cross product of two vec3's
+ * Computes the cross product of two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  */
-export function cross(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
+export function cross(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
   const ax = a[0],
     ay = a[1],
     az = a[2];
@@ -341,14 +341,14 @@ export function cross(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3): void {
 }
 
 /**
- * Performs a linear interpolation between two vec3's
+ * Performs a linear interpolation between two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function lerp(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, t: number): void {
+export function lerp(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, t: number): void {
   const ax = a[0];
   const ay = a[1];
   const az = a[2];
@@ -358,14 +358,14 @@ export function lerp(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, t: number): vo
 }
 
 /**
- * Performs a spherical linear interpolation between two vec3's
+ * Performs a spherical linear interpolation between two vec3_32's
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function slerp(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, t: number): void {
+export function slerp(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, t: number): void {
   const angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1));
   const sinTotal = Math.sin(angle);
 
@@ -379,14 +379,14 @@ export function slerp(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, t: number): v
 /**
  * Performs a hermite interpolation with two control points
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
- * @param {ReadonlyVec3} c the third operand
- * @param {ReadonlyVec3} d the fourth operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
+ * @param {ReadonlyVec3_32} c the third operand
+ * @param {ReadonlyVec3_32} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function hermite(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, c: ReadonlyVec3, d: ReadonlyVec3, t: number): void {
+export function hermite(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, c: ReadonlyVec3_32, d: ReadonlyVec3_32, t: number): void {
   const factorTimes2 = t * t;
   const factor1 = factorTimes2 * (2 * t - 3) + 1;
   const factor2 = factorTimes2 * (t - 2) + t;
@@ -401,14 +401,14 @@ export function hermite(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, c: Readonly
 /**
  * Performs a bezier interpolation with two control points
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the first operand
- * @param {ReadonlyVec3} b the second operand
- * @param {ReadonlyVec3} c the third operand
- * @param {ReadonlyVec3} d the fourth operand
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the first operand
+ * @param {ReadonlyVec3_32} b the second operand
+ * @param {ReadonlyVec3_32} c the third operand
+ * @param {ReadonlyVec3_32} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function bezier(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, c: ReadonlyVec3, d: ReadonlyVec3, t: number): void {
+export function bezier(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, c: ReadonlyVec3_32, d: ReadonlyVec3_32, t: number): void {
   const inverseFactor = 1 - t;
   const inverseFactorTimesTwo = inverseFactor * inverseFactor;
   const factorTimes2 = t * t;
@@ -425,9 +425,9 @@ export function bezier(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, c: ReadonlyV
 /**
  * Generates a random vector with the given scale
  *
- * @param {vec3} out the receiving vector
+ * @param {vec3_32} out the receiving vector
  */
-export function random(out: vec3): void {
+export function random(out: vec3_32): void {
   const r = Math.random() * 2.0 * Math.PI;
   const z = Math.random() * 2.0 - 1.0;
 
@@ -437,14 +437,14 @@ export function random(out: vec3): void {
 }
 
 /**
- * Transforms the vec3 with a mat4.
+ * Transforms the vec3_32 with a mat4.
  * 4th vector component is implicitly '1'
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the vector to transform
- * @param {ReadonlyMat4} m matrix to transform with
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the vector to transform
+ * @param {ReadonlyMat4_32} m matrix to transform with
  */
-export function transformMat4(out: vec3, a: ReadonlyVec3, m: ReadonlyMat4): void {
+export function transformMat4(out: vec3_32, a: ReadonlyVec3_32, m: ReadonlyMat4_32): void {
   const x = a[0],
     y = a[1],
     z = a[2];
@@ -456,14 +456,14 @@ export function transformMat4(out: vec3, a: ReadonlyVec3, m: ReadonlyMat4): void
 }
 
 /**
- * Transforms the vec3 with a quat
+ * Transforms the vec3_32 with a quat
  * Can also be used for dual quaternions. (Multiply it with the real part)
  *
- * @param {vec3} out the receiving vector
- * @param {ReadonlyVec3} a the vector to transform
- * @param {ReadonlyQuat} q quaternion to transform with
+ * @param {vec3_32} out the receiving vector
+ * @param {ReadonlyVec3_32} a the vector to transform
+ * @param {ReadonlyQuat_32} q quaternion to transform with
  */
-export function transformQuat(out: vec3, a: ReadonlyVec3, q: ReadonlyQuat): void {
+export function transformQuat(out: vec3_32, a: ReadonlyVec3_32, q: ReadonlyQuat_32): void {
   // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
   const qx = q[0],
     qy = q[1],
@@ -498,12 +498,12 @@ export function transformQuat(out: vec3, a: ReadonlyVec3, q: ReadonlyQuat): void
 
 /**
  * Rotate a 3D vector around the x-axis
- * @param {vec3} out The receiving vec3
- * @param {ReadonlyVec3} a The vec3 point to rotate
- * @param {ReadonlyVec3} b The origin of the rotation
+ * @param {vec3_32} out The receiving vec3_32
+ * @param {ReadonlyVec3_32} a The vec3_32 point to rotate
+ * @param {ReadonlyVec3_32} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
  */
-export function rotateX(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number): void {
+export function rotateX(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, rad: number): void {
   //Translate point to the origin
   const p0 = a[0] - b[0];
   const p1 = a[1] - b[1];
@@ -522,12 +522,12 @@ export function rotateX(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number
 
 /**
  * Rotate a 3D vector around the y-axis
- * @param {vec3} out The receiving vec3
- * @param {ReadonlyVec3} a The vec3 point to rotate
- * @param {ReadonlyVec3} b The origin of the rotation
+ * @param {vec3_32} out The receiving vec3_32
+ * @param {ReadonlyVec3_32} a The vec3_32 point to rotate
+ * @param {ReadonlyVec3_32} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
  */
-export function rotateY(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number): void {
+export function rotateY(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, rad: number): void {
   //Translate point to the origin
   const p0 = a[0] - b[0];
   const p1 = a[1] - b[1];
@@ -546,12 +546,12 @@ export function rotateY(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number
 
 /**
  * Rotate a 3D vector around the z-axis
- * @param {vec3} out The receiving vec3
- * @param {ReadonlyVec3} a The vec3 point to rotate
- * @param {ReadonlyVec3} b The origin of the rotation
+ * @param {vec3_32} out The receiving vec3_32
+ * @param {ReadonlyVec3_32} a The vec3_32 point to rotate
+ * @param {ReadonlyVec3_32} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
  */
-export function rotateZ(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number): void {
+export function rotateZ(out: vec3_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32, rad: number): void {
   //Translate point to the origin
   const p0 = a[0] - b[0];
   const p1 = a[1] - b[1];
@@ -570,11 +570,11 @@ export function rotateZ(out: vec3, a: ReadonlyVec3, b: ReadonlyVec3, rad: number
 
 /**
  * Get the angle between two 3D vectors
- * @param {ReadonlyVec3} a The first operand
- * @param {ReadonlyVec3} b The second operand
+ * @param {ReadonlyVec3_32} a The first operand
+ * @param {ReadonlyVec3_32} b The second operand
  * @returns {Number} The angle in radians
  */
-export function angle(a: ReadonlyVec3, b: ReadonlyVec3): number {
+export function angle(a: ReadonlyVec3_32, b: ReadonlyVec3_32): number {
   const ax = a[0],
     ay = a[1],
     az = a[2],
@@ -587,11 +587,11 @@ export function angle(a: ReadonlyVec3, b: ReadonlyVec3): number {
 }
 
 /**
- * Set the components of a vec3 to zero
+ * Set the components of a vec3_32 to zero
  *
- * @param {vec3} out the receiving vector
+ * @param {vec3_32} out the receiving vector
  */
-export function zero(out: vec3): void {
+export function zero(out: vec3_32): void {
   out[0] = 0.0;
   out[1] = 0.0;
   out[2] = 0.0;
@@ -600,22 +600,22 @@ export function zero(out: vec3): void {
 /**
  * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
  *
- * @param {ReadonlyVec3} a The first vector.
- * @param {ReadonlyVec3} b The second vector.
+ * @param {ReadonlyVec3_32} a The first vector.
+ * @param {ReadonlyVec3_32} b The second vector.
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
-export function exactEquals(a: ReadonlyVec3, b: ReadonlyVec3): boolean {
+export function exactEquals(a: ReadonlyVec3_32, b: ReadonlyVec3_32): boolean {
   return a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
 }
 
 /**
  * Returns whether or not the vectors have approximately the same elements in the same position.
  *
- * @param {ReadonlyVec3} a The first vector.
- * @param {ReadonlyVec3} b The second vector.
+ * @param {ReadonlyVec3_32} a The first vector.
+ * @param {ReadonlyVec3_32} b The second vector.
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
-export function equals(a: ReadonlyVec3, b: ReadonlyVec3): boolean {
+export function equals(a: ReadonlyVec3_32, b: ReadonlyVec3_32): boolean {
   const a0 = a[0],
     a1 = a[1],
     a2 = a[2];

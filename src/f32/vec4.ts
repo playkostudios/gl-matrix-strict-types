@@ -1,4 +1,4 @@
-import { type vec4, type ReadonlyVec4, type ReadonlyMat4 } from "./types.js";
+import { type vec4_32, type ReadonlyMat4_32, type ReadonlyQuat_32, type ReadonlyVec4_32 } from './types_32.js';
 
 /**
  * 4 Dimensional Vector
@@ -6,21 +6,21 @@ import { type vec4, type ReadonlyVec4, type ReadonlyMat4 } from "./types.js";
  */
 
 /**
- * Creates a new, empty vec4
+ * Creates a new, empty vec4_32
  *
- * @returns {vec4} a new 4D vector
+ * @returns {vec4_32} a new 4D vector
  */
-export function create(): vec4 {
+export function create(): vec4_32 {
   return new Float32Array(4);
 }
 
 /**
- * Creates a new vec4 initialized with values from an existing vector
+ * Creates a new vec4_32 initialized with values from an existing vector
  *
- * @param {ReadonlyVec4} a vector to clone
- * @returns {vec4} a new 4D vector
+ * @param {ReadonlyVec4_32} a vector to clone
+ * @returns {vec4_32} a new 4D vector
  */
-export function clone(a: ReadonlyVec4): vec4 {
+export function clone(a: ReadonlyVec4_32): vec4_32 {
   const out = new Float32Array(4);
   out[0] = a[0];
   out[1] = a[1];
@@ -30,15 +30,15 @@ export function clone(a: ReadonlyVec4): vec4 {
 }
 
 /**
- * Creates a new vec4 initialized with the given values
+ * Creates a new vec4_32 initialized with the given values
  *
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
- * @returns {vec4} a new 4D vector
+ * @returns {vec4_32} a new 4D vector
  */
-export function fromValues(x: number, y: number, z: number, w: number): vec4 {
+export function fromValues(x: number, y: number, z: number, w: number): vec4_32 {
   const out = new Float32Array(4);
   out[0] = x;
   out[1] = y;
@@ -48,12 +48,12 @@ export function fromValues(x: number, y: number, z: number, w: number): vec4 {
 }
 
 /**
- * Copy the values from one vec4 to another
+ * Copy the values from one vec4_32 to another
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the source vector
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the source vector
  */
-export function copy(out: vec4, a: ReadonlyVec4): void {
+export function copy(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -61,15 +61,15 @@ export function copy(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Set the components of a vec4 to the given values
+ * Set the components of a vec4_32 to the given values
  *
- * @param {vec4} out the receiving vector
+ * @param {vec4_32} out the receiving vector
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
  */
-export function set(out: vec4, x: number, y: number, z: number, w: number): void {
+export function set(out: vec4_32, x: number, y: number, z: number, w: number): void {
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -77,13 +77,13 @@ export function set(out: vec4, x: number, y: number, z: number, w: number): void
 }
 
 /**
- * Adds two vec4's
+ * Adds two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function add(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function add(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = a[0] + b[0];
   out[1] = a[1] + b[1];
   out[2] = a[2] + b[2];
@@ -93,11 +93,11 @@ export function add(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 /**
  * Subtracts vector b from vector a
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function subtract(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function subtract(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = a[0] - b[0];
   out[1] = a[1] - b[1];
   out[2] = a[2] - b[2];
@@ -105,13 +105,13 @@ export function subtract(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 }
 
 /**
- * Multiplies two vec4's
+ * Multiplies two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function multiply(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function multiply(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = a[0] * b[0];
   out[1] = a[1] * b[1];
   out[2] = a[2] * b[2];
@@ -119,13 +119,13 @@ export function multiply(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 }
 
 /**
- * Divides two vec4's
+ * Divides two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function divide(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function divide(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = a[0] / b[0];
   out[1] = a[1] / b[1];
   out[2] = a[2] / b[2];
@@ -133,12 +133,12 @@ export function divide(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 }
 
 /**
- * Math.ceil the components of a vec4
+ * Math.ceil the components of a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to ceil
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to ceil
  */
-export function ceil(out: vec4, a: ReadonlyVec4): void {
+export function ceil(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = Math.ceil(a[0]);
   out[1] = Math.ceil(a[1]);
   out[2] = Math.ceil(a[2]);
@@ -146,12 +146,12 @@ export function ceil(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Math.floor the components of a vec4
+ * Math.floor the components of a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to floor
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to floor
  */
-export function floor(out: vec4, a: ReadonlyVec4): void {
+export function floor(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = Math.floor(a[0]);
   out[1] = Math.floor(a[1]);
   out[2] = Math.floor(a[2]);
@@ -159,13 +159,13 @@ export function floor(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Returns the minimum of two vec4's
+ * Returns the minimum of two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function min(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function min(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = Math.min(a[0], b[0]);
   out[1] = Math.min(a[1], b[1]);
   out[2] = Math.min(a[2], b[2]);
@@ -173,13 +173,13 @@ export function min(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 }
 
 /**
- * Returns the maximum of two vec4's
+ * Returns the maximum of two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  */
-export function max(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
+export function max(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32): void {
   out[0] = Math.max(a[0], b[0]);
   out[1] = Math.max(a[1], b[1]);
   out[2] = Math.max(a[2], b[2]);
@@ -187,12 +187,12 @@ export function max(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4): void {
 }
 
 /**
- * symmetric round the components of a vec4
+ * symmetric round the components of a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to round
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to round
  */
-export function round(out: vec4, a: ReadonlyVec4): void {
+export function round(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = Math.round(a[0]);
   out[1] = Math.round(a[1]);
   out[2] = Math.round(a[2]);
@@ -200,13 +200,13 @@ export function round(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Scales a vec4 by a scalar number
+ * Scales a vec4_32 by a scalar number
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the vector to scale
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the vector to scale
  * @param {Number} b amount to scale the vector by
  */
-export function scale(out: vec4, a: ReadonlyVec4, b: number): void {
+export function scale(out: vec4_32, a: ReadonlyVec4_32, b: number): void {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   out[2] = a[2] * b;
@@ -214,14 +214,14 @@ export function scale(out: vec4, a: ReadonlyVec4, b: number): void {
 }
 
 /**
- * Adds two vec4's after scaling the second operand by a scalar value
+ * Adds two vec4_32's after scaling the second operand by a scalar value
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  * @param {Number} scale the amount to scale b by before adding
  */
-export function scaleAndAdd(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4, scale: number): void {
+export function scaleAndAdd(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32, scale: number): void {
   out[0] = a[0] + b[0] * scale;
   out[1] = a[1] + b[1] * scale;
   out[2] = a[2] + b[2] * scale;
@@ -229,13 +229,13 @@ export function scaleAndAdd(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4, scale: 
 }
 
 /**
- * Calculates the euclidian distance between two vec4's
+ * Calculates the euclidian distance between two vec4_32's
  *
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  * @returns {Number} distance between a and b
  */
-export function distance(a: ReadonlyVec4, b: ReadonlyVec4): number {
+export function distance(a: ReadonlyVec4_32, b: ReadonlyVec4_32): number {
   const x = b[0] - a[0];
   const y = b[1] - a[1];
   const z = b[2] - a[2];
@@ -244,13 +244,13 @@ export function distance(a: ReadonlyVec4, b: ReadonlyVec4): number {
 }
 
 /**
- * Calculates the squared euclidian distance between two vec4's
+ * Calculates the squared euclidian distance between two vec4_32's
  *
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  * @returns {Number} squared distance between a and b
  */
-export function squaredDistance(a: ReadonlyVec4, b: ReadonlyVec4): number {
+export function squaredDistance(a: ReadonlyVec4_32, b: ReadonlyVec4_32): number {
   const x = b[0] - a[0];
   const y = b[1] - a[1];
   const z = b[2] - a[2];
@@ -259,12 +259,12 @@ export function squaredDistance(a: ReadonlyVec4, b: ReadonlyVec4): number {
 }
 
 /**
- * Calculates the length of a vec4
+ * Calculates the length of a vec4_32
  *
- * @param {ReadonlyVec4} a vector to calculate length of
+ * @param {ReadonlyVec4_32} a vector to calculate length of
  * @returns {Number} length of a
  */
-export function length(a: ReadonlyVec4): number {
+export function length(a: ReadonlyVec4_32): number {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -273,12 +273,12 @@ export function length(a: ReadonlyVec4): number {
 }
 
 /**
- * Calculates the squared length of a vec4
+ * Calculates the squared length of a vec4_32
  *
- * @param {ReadonlyVec4} a vector to calculate squared length of
+ * @param {ReadonlyVec4_32} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-export function squaredLength(a: ReadonlyVec4): number {
+export function squaredLength(a: ReadonlyVec4_32): number {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -287,12 +287,12 @@ export function squaredLength(a: ReadonlyVec4): number {
 }
 
 /**
- * Negates the components of a vec4
+ * Negates the components of a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to negate
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to negate
  */
-export function negate(out: vec4, a: ReadonlyVec4): void {
+export function negate(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = -a[0];
   out[1] = -a[1];
   out[2] = -a[2];
@@ -300,12 +300,12 @@ export function negate(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Returns the inverse of the components of a vec4
+ * Returns the inverse of the components of a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to invert
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to invert
  */
-export function inverse(out: vec4, a: ReadonlyVec4): void {
+export function inverse(out: vec4_32, a: ReadonlyVec4_32): void {
   out[0] = 1.0 / a[0];
   out[1] = 1.0 / a[1];
   out[2] = 1.0 / a[2];
@@ -313,12 +313,12 @@ export function inverse(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Normalize a vec4
+ * Normalize a vec4_32
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a vector to normalize
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a vector to normalize
  */
-export function normalize(out: vec4, a: ReadonlyVec4): void {
+export function normalize(out: vec4_32, a: ReadonlyVec4_32): void {
   const x = a[0];
   const y = a[1];
   const z = a[2];
@@ -334,25 +334,25 @@ export function normalize(out: vec4, a: ReadonlyVec4): void {
 }
 
 /**
- * Calculates the dot product of two vec4's
+ * Calculates the dot product of two vec4_32's
  *
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  * @returns {Number} dot product of a and b
  */
-export function dot(a: ReadonlyVec4, b: ReadonlyVec4): number {
+export function dot(a: ReadonlyVec4_32, b: ReadonlyVec4_32): number {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
 }
 
 /**
  * Returns the cross-product of three vectors in a 4-dimensional space
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} u the first vector
- * @param {ReadonlyVec4} v the second vector
- * @param {ReadonlyVec4} w the third vector
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} u the first vector
+ * @param {ReadonlyVec4_32} v the second vector
+ * @param {ReadonlyVec4_32} w the third vector
  */
-export function cross(out: vec4, u: ReadonlyVec4, v: ReadonlyVec4, w: ReadonlyVec4): void {
+export function cross(out: vec4_32, u: ReadonlyVec4_32, v: ReadonlyVec4_32, w: ReadonlyVec4_32): void {
   const A = v[0] * w[1] - v[1] * w[0],
     B = v[0] * w[2] - v[2] * w[0],
     C = v[0] * w[3] - v[3] * w[0],
@@ -371,14 +371,14 @@ export function cross(out: vec4, u: ReadonlyVec4, v: ReadonlyVec4, w: ReadonlyVe
 }
 
 /**
- * Performs a linear interpolation between two vec4's
+ * Performs a linear interpolation between two vec4_32's
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the first operand
- * @param {ReadonlyVec4} b the second operand
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the first operand
+ * @param {ReadonlyVec4_32} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function lerp(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4, t: number): void {
+export function lerp(out: vec4_32, a: ReadonlyVec4_32, b: ReadonlyVec4_32, t: number): void {
   const ax = a[0];
   const ay = a[1];
   const az = a[2];
@@ -392,9 +392,9 @@ export function lerp(out: vec4, a: ReadonlyVec4, b: ReadonlyVec4, t: number): vo
 /**
  * Generates a random vector
  *
- * @param {vec4} out the receiving vector
+ * @param {vec4_32} out the receiving vector
  */
-export function random(out: vec4): void {
+export function random(out: vec4_32): void {
   // Marsaglia, George. Choosing a Point from the Surface of a
   // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.
   // http://projecteuclid.org/euclid.aoms/1177692644;
@@ -416,13 +416,13 @@ export function random(out: vec4): void {
 }
 
 /**
- * Transforms the vec4 with a mat4.
+ * Transforms the vec4_32 with a mat4.
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the vector to transform
- * @param {ReadonlyMat4} m matrix to transform with
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the vector to transform
+ * @param {ReadonlyMat4_32} m matrix to transform with
  */
-export function transformMat4(out: vec4, a: ReadonlyMat4, m: ReadonlyMat4): void {
+export function transformMat4(out: vec4_32, a: ReadonlyVec4_32, m: ReadonlyMat4_32): void {
   const x = a[0],
     y = a[1],
     z = a[2],
@@ -434,13 +434,13 @@ export function transformMat4(out: vec4, a: ReadonlyMat4, m: ReadonlyMat4): void
 }
 
 /**
- * Transforms the vec4 with a quat
+ * Transforms the vec4_32 with a quat
  *
- * @param {vec4} out the receiving vector
- * @param {ReadonlyVec4} a the vector to transform
- * @param {ReadonlyQuat} q quaternion to transform with
+ * @param {vec4_32} out the receiving vector
+ * @param {ReadonlyVec4_32} a the vector to transform
+ * @param {ReadonlyQuat_32} q quaternion to transform with
  */
-export function transformQuat(out: vec4, a: ReadonlyMat4, q: ReadonlyMat4): void {
+export function transformQuat(out: vec4_32, a: ReadonlyVec4_32, q: ReadonlyQuat_32): void {
   const x = a[0],
     y = a[1],
     z = a[2];
@@ -463,11 +463,11 @@ export function transformQuat(out: vec4, a: ReadonlyMat4, q: ReadonlyMat4): void
 }
 
 /**
- * Set the components of a vec4 to zero
+ * Set the components of a vec4_32 to zero
  *
- * @param {vec4} out the receiving vector
+ * @param {vec4_32} out the receiving vector
  */
-export function zero(out: vec4): void {
+export function zero(out: vec4_32): void {
   out[0] = 0.0;
   out[1] = 0.0;
   out[2] = 0.0;
@@ -477,22 +477,22 @@ export function zero(out: vec4): void {
 /**
  * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
  *
- * @param {ReadonlyVec4} a The first vector.
- * @param {ReadonlyVec4} b The second vector.
+ * @param {ReadonlyVec4_32} a The first vector.
+ * @param {ReadonlyVec4_32} b The second vector.
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
-export function exactEquals(a: ReadonlyVec4, b: ReadonlyVec4): boolean {
+export function exactEquals(a: ReadonlyVec4_32, b: ReadonlyVec4_32): boolean {
   return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
 }
 
 /**
  * Returns whether or not the vectors have approximately the same elements in the same position.
  *
- * @param {ReadonlyVec4} a The first vector.
- * @param {ReadonlyVec4} b The second vector.
+ * @param {ReadonlyVec4_32} a The first vector.
+ * @param {ReadonlyVec4_32} b The second vector.
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
-export function equals(a: ReadonlyVec4, b: ReadonlyVec4): boolean {
+export function equals(a: ReadonlyVec4_32, b: ReadonlyVec4_32): boolean {
   const a0 = a[0],
     a1 = a[1],
     a2 = a[2],

@@ -1,7 +1,7 @@
 import * as quat_fns from "./quat.js";
 import * as mat4_fns from "./mat4.js";
 import * as vec4_fns from "./vec4.js";
-import { type quat2, type vec3, type ReadonlyMat4, type ReadonlyVec3, type ReadonlyQuat, type ReadonlyQuat2 } from "./types.js";
+import { type quat2_32, type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32, type ReadonlyQuat2_32 } from './types_32.js';
 
 /**
  * Dual Quaternion<br>
@@ -14,9 +14,9 @@ import { type quat2, type vec3, type ReadonlyMat4, type ReadonlyVec3, type Reado
 /**
  * Creates a new identity dual quat
  *
- * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
+ * @returns {quat2_32} a new dual quaternion [real -> rotation, dual -> translation]
  */
-export function create(): quat2 {
+export function create(): quat2_32 {
   const dq = new Float32Array(8);
   dq[3] = 1;
   return dq;
@@ -25,11 +25,11 @@ export function create(): quat2 {
 /**
  * Creates a new quat initialized with values from an existing quaternion
  *
- * @param {ReadonlyQuat2} a dual quaternion to clone
- * @returns {quat2} new dual quaternion
+ * @param {ReadonlyQuat2_32} a dual quaternion to clone
+ * @returns {quat2_32} new dual quaternion
  * @function
  */
-export function clone(a: ReadonlyQuat2): quat2 {
+export function clone(a: ReadonlyQuat2_32): quat2_32 {
   const dq = new Float32Array(8);
   dq[0] = a[0];
   dq[1] = a[1];
@@ -53,10 +53,10 @@ export function clone(a: ReadonlyQuat2): quat2 {
  * @param {Number} y2 Y component
  * @param {Number} z2 Z component
  * @param {Number} w2 W component
- * @returns {quat2} new dual quaternion
+ * @returns {quat2_32} new dual quaternion
  * @function
  */
-export function fromValues(x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number, w2: number): quat2 {
+export function fromValues(x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number, w2: number): quat2_32 {
   const dq = new Float32Array(8);
   dq[0] = x1;
   dq[1] = y1;
@@ -79,10 +79,10 @@ export function fromValues(x1: number, y1: number, z1: number, w1: number, x2: n
  * @param {Number} x2 X component (translation)
  * @param {Number} y2 Y component (translation)
  * @param {Number} z2 Z component (translation)
- * @returns {quat2} new dual quaternion
+ * @returns {quat2_32} new dual quaternion
  * @function
  */
-export function fromRotationTranslationValues(x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number): quat2 {
+export function fromRotationTranslationValues(x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number): quat2_32 {
   const dq = new Float32Array(8);
   dq[0] = x1;
   dq[1] = y1;
@@ -101,12 +101,12 @@ export function fromRotationTranslationValues(x1: number, y1: number, z1: number
 /**
  * Creates a dual quat from a quaternion and a translation
  *
- * @param {quat2} out quaternion receiving operation result
- * @param {ReadonlyQuat} q a normalized quaternion
- * @param {ReadonlyVec3} t translation vector
+ * @param {quat2_32} out quaternion receiving operation result
+ * @param {ReadonlyQuat_32} q a normalized quaternion
+ * @param {ReadonlyVec3_32} t translation vector
  * @function
  */
-export function fromRotationTranslation(out: quat2, q: ReadonlyQuat, t: ReadonlyVec3): void {
+export function fromRotationTranslation(out: quat2_32, q: ReadonlyQuat_32, t: ReadonlyVec3_32): void {
   const ax = t[0] * 0.5,
     ay = t[1] * 0.5,
     az = t[2] * 0.5,
@@ -127,11 +127,11 @@ export function fromRotationTranslation(out: quat2, q: ReadonlyQuat, t: Readonly
 /**
  * Creates a dual quat from a translation
  *
- * @param {quat2} out quaternion receiving operation result
- * @param {ReadonlyVec3} t translation vector
+ * @param {quat2_32} out quaternion receiving operation result
+ * @param {ReadonlyVec3_32} t translation vector
  * @function
  */
-export function fromTranslation(out: quat2, t: ReadonlyVec3): void {
+export function fromTranslation(out: quat2_32, t: ReadonlyVec3_32): void {
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -145,11 +145,11 @@ export function fromTranslation(out: quat2, t: ReadonlyVec3): void {
 /**
  * Creates a dual quat from a quaternion
  *
- * @param {quat2} out quaternion receiving operation result
- * @param {ReadonlyQuat} q the quaternion
+ * @param {quat2_32} out quaternion receiving operation result
+ * @param {ReadonlyQuat_32} q the quaternion
  * @function
  */
-export function fromRotation(out: quat2, q: ReadonlyQuat): void {
+export function fromRotation(out: quat2_32, q: ReadonlyQuat_32): void {
   out[0] = q[0];
   out[1] = q[1];
   out[2] = q[2];
@@ -166,11 +166,11 @@ const fromMat4_temp_t = new Float32Array(3);
 /**
  * Creates a new dual quat from a matrix (4x4)
  *
- * @param {quat2} out the dual quaternion
- * @param {ReadonlyMat4} a the matrix
+ * @param {quat2_32} out the dual quaternion
+ * @param {ReadonlyMat4_32} a the matrix
  * @function
  */
-export function fromMat4(out: quat2, a: ReadonlyMat4): void {
+export function fromMat4(out: quat2_32, a: ReadonlyMat4_32): void {
   mat4_fns.getRotation(fromMat4_temp_outer, a);
   mat4_fns.getTranslation(fromMat4_temp_t, a);
   fromRotationTranslation(out, fromMat4_temp_outer, fromMat4_temp_t);
@@ -179,11 +179,11 @@ export function fromMat4(out: quat2, a: ReadonlyMat4): void {
 /**
  * Copy the values from one dual quat to another
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the source dual quaternion
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the source dual quaternion
  * @function
  */
-export function copy(out: quat2, a: ReadonlyQuat2): void {
+export function copy(out: quat2_32, a: ReadonlyQuat2_32): void {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -197,9 +197,9 @@ export function copy(out: quat2, a: ReadonlyQuat2): void {
 /**
  * Set a dual quat to the identity dual quaternion
  *
- * @param {quat2} out the receiving quaternion
+ * @param {quat2_32} out the receiving quaternion
  */
-export function identity(out: quat2): void {
+export function identity(out: quat2_32): void {
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -213,7 +213,7 @@ export function identity(out: quat2): void {
 /**
  * Set the components of a dual quat to the given values
  *
- * @param {quat2} out the receiving quaternion
+ * @param {quat2_32} out the receiving quaternion
  * @param {Number} x1 X component
  * @param {Number} y1 Y component
  * @param {Number} z1 Z component
@@ -224,7 +224,7 @@ export function identity(out: quat2): void {
  * @param {Number} w2 W component
  * @function
  */
-export function set(out: quat2, x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number, w2: number): void {
+export function set(out: quat2_32, x1: number, y1: number, z1: number, w1: number, x2: number, y2: number, z2: number, w2: number): void {
   out[0] = x1;
   out[1] = y1;
   out[2] = z1;
@@ -239,9 +239,9 @@ export function set(out: quat2, x1: number, y1: number, z1: number, w1: number, 
 /**
  * Gets the dual part of a dual quat
  * @param  {quat} out dual part
- * @param  {ReadonlyQuat2} a Dual Quaternion
+ * @param  {ReadonlyQuat2_32} a Dual Quaternion
  */
-export function getDual(out: quat2, a: ReadonlyQuat2): void {
+export function getDual(out: quat2_32, a: ReadonlyQuat2_32): void {
   out[0] = a[4];
   out[1] = a[5];
   out[2] = a[6];
@@ -251,11 +251,11 @@ export function getDual(out: quat2, a: ReadonlyQuat2): void {
 /**
  * Set the dual component of a dual quat to the given quaternion
  *
- * @param {quat2} out the receiving quaternion
- * @param {ReadonlyQuat} q a quaternion representing the dual part
+ * @param {quat2_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} q a quaternion representing the dual part
  * @function
  */
-export function setDual(out: quat2, q: ReadonlyQuat): void {
+export function setDual(out: quat2_32, q: ReadonlyQuat_32): void {
   out[4] = q[0];
   out[5] = q[1];
   out[6] = q[2];
@@ -264,10 +264,10 @@ export function setDual(out: quat2, q: ReadonlyQuat): void {
 
 /**
  * Gets the translation of a normalized dual quat
- * @param  {vec3} out translation
- * @param  {ReadonlyQuat2} a Dual Quaternion to be decomposed
+ * @param  {vec3_32} out translation
+ * @param  {ReadonlyQuat2_32} a Dual Quaternion to be decomposed
  */
-export function getTranslation(out: vec3, a: ReadonlyQuat2): void {
+export function getTranslation(out: vec3_32, a: ReadonlyQuat2_32): void {
   const ax = a[4],
     ay = a[5],
     az = a[6],
@@ -284,11 +284,11 @@ export function getTranslation(out: vec3, a: ReadonlyQuat2): void {
 /**
  * Translates a dual quat by the given vector
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to translate
- * @param {ReadonlyVec3} v vector to translate by
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to translate
+ * @param {ReadonlyVec3_32} v vector to translate by
  */
-export function translate(out: quat2, a: ReadonlyQuat2, v: ReadonlyVec3): void {
+export function translate(out: quat2_32, a: ReadonlyQuat2_32, v: ReadonlyVec3_32): void {
   const ax1 = a[0],
     ay1 = a[1],
     az1 = a[2],
@@ -313,11 +313,11 @@ export function translate(out: quat2, a: ReadonlyQuat2, v: ReadonlyVec3): void {
 /**
  * Rotates a dual quat around the X axis
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  */
-export function rotateX(out: quat2, a: ReadonlyQuat2, rad: number): void {
+export function rotateX(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
   let bx = -a[0],
     by = -a[1],
     bz = -a[2],
@@ -344,11 +344,11 @@ export function rotateX(out: quat2, a: ReadonlyQuat2, rad: number): void {
 /**
  * Rotates a dual quat around the Y axis
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  */
-export function rotateY(out: quat2, a: ReadonlyQuat2, rad: number): void {
+export function rotateY(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
   let bx = -a[0],
     by = -a[1],
     bz = -a[2],
@@ -375,11 +375,11 @@ export function rotateY(out: quat2, a: ReadonlyQuat2, rad: number): void {
 /**
  * Rotates a dual quat around the Z axis
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  */
-export function rotateZ(out: quat2, a: ReadonlyQuat2, rad: number): void {
+export function rotateZ(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
   let bx = -a[0],
     by = -a[1],
     bz = -a[2],
@@ -406,11 +406,11 @@ export function rotateZ(out: quat2, a: ReadonlyQuat2, rad: number): void {
 /**
  * Rotates a dual quat by a given quaternion (a * q)
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
- * @param {ReadonlyQuat} q quaternion to rotate by
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
+ * @param {ReadonlyQuat_32} q quaternion to rotate by
  */
-export function rotateByQuatAppend(out: quat2, a: ReadonlyQuat2, q: ReadonlyQuat): void {
+export function rotateByQuatAppend(out: quat2_32, a: ReadonlyQuat2_32, q: ReadonlyQuat_32): void {
   let qx = q[0],
     qy = q[1],
     qz = q[2],
@@ -437,11 +437,11 @@ export function rotateByQuatAppend(out: quat2, a: ReadonlyQuat2, q: ReadonlyQuat
 /**
  * Rotates a dual quat by a given quaternion (q * a)
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat} q quaternion to rotate by
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat_32} q quaternion to rotate by
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
  */
-export function rotateByQuatPrepend(out: quat2, q: ReadonlyQuat, a: ReadonlyQuat2): void {
+export function rotateByQuatPrepend(out: quat2_32, q: ReadonlyQuat_32, a: ReadonlyQuat2_32): void {
   let qx = q[0],
     qy = q[1],
     qz = q[2],
@@ -468,12 +468,12 @@ export function rotateByQuatPrepend(out: quat2, q: ReadonlyQuat, a: ReadonlyQuat
 /**
  * Rotates a dual quat around a given axis. Does the normalisation automatically
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the dual quaternion to rotate
- * @param {ReadonlyVec3} axis the axis to rotate around
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the dual quaternion to rotate
+ * @param {ReadonlyVec3_32} axis the axis to rotate around
  * @param {Number} rad how far the rotation should be
  */
-export function rotateAroundAxis(out: quat2, a: ReadonlyQuat2, axis: ReadonlyVec3, rad: number): void {
+export function rotateAroundAxis(out: quat2_32, a: ReadonlyQuat2_32, axis: ReadonlyVec3_32, rad: number): void {
   //Special case for rad = 0
   if (Math.abs(rad) < 0.000001) {
     return copy(out, a);
@@ -509,12 +509,12 @@ export function rotateAroundAxis(out: quat2, a: ReadonlyQuat2, axis: ReadonlyVec
 /**
  * Adds two dual quat's
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the first operand
- * @param {ReadonlyQuat2} b the second operand
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the first operand
+ * @param {ReadonlyQuat2_32} b the second operand
  * @function
  */
-export function add(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2): void {
+export function add(out: quat2_32, a: ReadonlyQuat2_32, b: ReadonlyQuat2_32): void {
   out[0] = a[0] + b[0];
   out[1] = a[1] + b[1];
   out[2] = a[2] + b[2];
@@ -528,11 +528,11 @@ export function add(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2): void {
 /**
  * Multiplies two dual quat's
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a the first operand
- * @param {ReadonlyQuat2} b the second operand
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a the first operand
+ * @param {ReadonlyQuat2_32} b the second operand
  */
-export function multiply(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2): void {
+export function multiply(out: quat2_32, a: ReadonlyQuat2_32, b: ReadonlyQuat2_32): void {
   const ax0 = a[0],
     ay0 = a[1],
     az0 = a[2],
@@ -594,12 +594,12 @@ export function multiply(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2): void {
 /**
  * Scales a dual quat by a scalar number
  *
- * @param {quat2} out the receiving dual quat
- * @param {ReadonlyQuat2} a the dual quat to scale
+ * @param {quat2_32} out the receiving dual quat
+ * @param {ReadonlyQuat2_32} a the dual quat to scale
  * @param {Number} b amount to scale the dual quat by
  * @function
  */
-export function scale(out: quat2, a: ReadonlyQuat2, b: number): void {
+export function scale(out: quat2_32, a: ReadonlyQuat2_32, b: number): void {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   out[2] = a[2] * b;
@@ -614,12 +614,12 @@ export function scale(out: quat2, a: ReadonlyQuat2, b: number): void {
  * Performs a linear interpolation between two dual quats's
  * NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
  *
- * @param {quat2} out the receiving dual quat
- * @param {ReadonlyQuat2} a the first operand
- * @param {ReadonlyQuat2} b the second operand
+ * @param {quat2_32} out the receiving dual quat
+ * @param {ReadonlyQuat2_32} a the first operand
+ * @param {ReadonlyQuat2_32} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function lerp(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2, t: number): void {
+export function lerp(out: quat2_32, a: ReadonlyQuat2_32, b: ReadonlyQuat2_32, t: number): void {
   const mt = 1 - t;
   if (vec4_fns.dot(a, b) < 0) t = -t;
 
@@ -636,10 +636,10 @@ export function lerp(out: quat2, a: ReadonlyQuat2, b: ReadonlyQuat2, t: number):
 /**
  * Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a dual quat to calculate inverse of
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a dual quat to calculate inverse of
  */
-export function invert(out: quat2, a: ReadonlyQuat2): void {
+export function invert(out: quat2_32, a: ReadonlyQuat2_32): void {
   const sqlen = vec4_fns.squaredLength(a);
   out[0] = -a[0] / sqlen;
   out[1] = -a[1] / sqlen;
@@ -653,12 +653,12 @@ export function invert(out: quat2, a: ReadonlyQuat2): void {
 
 /**
  * Calculates the conjugate of a dual quat
- * If the dual quaternion is normalized, this function is faster than quat2.inverse and produces the same result.
+ * If the dual quaternion is normalized, this function is faster than quat2_32.inverse and produces the same result.
  *
- * @param {quat2} out the receiving quaternion
- * @param {ReadonlyQuat2} a quat to calculate conjugate of
+ * @param {quat2_32} out the receiving quaternion
+ * @param {ReadonlyQuat2_32} a quat to calculate conjugate of
  */
-export function conjugate(out: quat2, a: ReadonlyQuat2): void {
+export function conjugate(out: quat2_32, a: ReadonlyQuat2_32): void {
   out[0] = -a[0];
   out[1] = -a[1];
   out[2] = -a[2];
@@ -672,11 +672,11 @@ export function conjugate(out: quat2, a: ReadonlyQuat2): void {
 /**
  * Normalize a dual quat
  *
- * @param {quat2} out the receiving dual quaternion
- * @param {ReadonlyQuat2} a dual quaternion to normalize
+ * @param {quat2_32} out the receiving dual quaternion
+ * @param {ReadonlyQuat2_32} a dual quaternion to normalize
  * @function
  */
-export function normalize(out: quat2, a: ReadonlyQuat2): void {
+export function normalize(out: quat2_32, a: ReadonlyQuat2_32): void {
   let magnitude = vec4_fns.squaredLength(a);
   if (magnitude > 0) {
     magnitude = Math.sqrt(magnitude);
@@ -708,11 +708,11 @@ export function normalize(out: quat2, a: ReadonlyQuat2): void {
 /**
  * Returns whether or not the dual quaternions have exactly the same elements in the same position (when compared with ===)
  *
- * @param {ReadonlyQuat2} a the first dual quaternion.
- * @param {ReadonlyQuat2} b the second dual quaternion.
+ * @param {ReadonlyQuat2_32} a the first dual quaternion.
+ * @param {ReadonlyQuat2_32} b the second dual quaternion.
  * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
  */
-export function exactEquals(a: ReadonlyQuat2, b: ReadonlyQuat2): boolean {
+export function exactEquals(a: ReadonlyQuat2_32, b: ReadonlyQuat2_32): boolean {
   return (
     a[0] === b[0] &&
     a[1] === b[1] &&
@@ -728,11 +728,11 @@ export function exactEquals(a: ReadonlyQuat2, b: ReadonlyQuat2): boolean {
 /**
  * Returns whether or not the dual quaternions have approximately the same elements in the same position.
  *
- * @param {ReadonlyQuat2} a the first dual quat.
- * @param {ReadonlyQuat2} b the second dual quat.
+ * @param {ReadonlyQuat2_32} a the first dual quat.
+ * @param {ReadonlyQuat2_32} b the second dual quat.
  * @returns {Boolean} true if the dual quats are equal, false otherwise.
  */
-export function equals(a: ReadonlyQuat2, b: ReadonlyQuat2): boolean {
+export function equals(a: ReadonlyQuat2_32, b: ReadonlyQuat2_32): boolean {
   const a0 = a[0],
     a1 = a[1],
     a2 = a[2],

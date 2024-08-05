@@ -1,7 +1,7 @@
 import { AngleOrder } from "../AngleOrder.js";
 import * as vec3_fns from "./vec3.js";
 import * as vec4_fns from "./vec4.js";
-import { type vec3, type quat, type ReadonlyVec3, type ReadonlyQuat } from "./types.js";
+import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from './types_32.js';
 
 /**
  * Quaternion in the format XYZW
@@ -9,22 +9,22 @@ import { type vec3, type quat, type ReadonlyVec3, type ReadonlyQuat } from "./ty
  */
 
 /**
- * Creates a new identity quat
+ * Creates a new identity quat_32
  *
- * @returns {quat} a new quaternion
+ * @returns {quat_32} a new quaternion
  */
-export function create(): quat {
+export function create(): quat_32 {
   const out = new Float32Array(4);
   out[3] = 1;
   return out;
 }
 
 /**
- * Set a quat to the identity quaternion
+ * Set a quat_32 to the identity quaternion
  *
- * @param {quat} out the receiving quaternion
+ * @param {quat_32} out the receiving quaternion
  */
-export function identity(out: quat): void {
+export function identity(out: quat_32): void {
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -32,14 +32,14 @@ export function identity(out: quat): void {
 }
 
 /**
- * Sets a quat from the given angle and rotation axis,
+ * Sets a quat_32 from the given angle and rotation axis,
  * then returns it.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyVec3} axis the axis around which to rotate
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyVec3_32} axis the axis around which to rotate
  * @param {Number} rad the angle in radians
  **/
-export function setAxisAngle(out: quat, axis: ReadonlyVec3, rad: number): void {
+export function setAxisAngle(out: quat_32, axis: ReadonlyVec3_32, rad: number): void {
   rad = rad * 0.5;
   const s = Math.sin(rad);
   out[0] = s * axis[0];
@@ -57,11 +57,11 @@ export function setAxisAngle(out: quat, axis: ReadonlyVec3, rad: number): void {
  * Example: The quaternion formed by axis [0, 0, 1] and
  *  angle -90 is the same as the quaternion formed by
  *  [0, 0, 1] and 270. This method favors the latter.
- * @param  {vec3} out_axis  Vector receiving the axis of rotation
- * @param  {ReadonlyQuat} q     Quaternion to be decomposed
+ * @param  {vec3_32} out_axis  Vector receiving the axis of rotation
+ * @param  {ReadonlyQuat_32} q     Quaternion to be decomposed
  * @return {Number}     Angle, in radians, of the rotation
  */
-export function getAxisAngle(out_axis: vec3, q: ReadonlyQuat): number {
+export function getAxisAngle(out_axis: vec3_32, q: ReadonlyQuat_32): number {
   const rad = Math.acos(q[3]) * 2.0;
   const s = Math.sin(rad / 2.0);
   if (s > 0.000001) {
@@ -80,24 +80,24 @@ export function getAxisAngle(out_axis: vec3, q: ReadonlyQuat): number {
 /**
  * Gets the angular distance between two unit quaternions
  *
- * @param  {ReadonlyQuat} a     Origin unit quaternion
- * @param  {ReadonlyQuat} b     Destination unit quaternion
+ * @param  {ReadonlyQuat_32} a     Origin unit quaternion
+ * @param  {ReadonlyQuat_32} b     Destination unit quaternion
  * @return {Number}     Angle, in radians, between the two quaternions
  */
-export function getAngle(a: ReadonlyQuat, b: ReadonlyQuat): number {
+export function getAngle(a: ReadonlyQuat_32, b: ReadonlyQuat_32): number {
   const dotproduct = vec4_fns.dot(a, b);
 
   return Math.acos(2 * dotproduct * dotproduct - 1);
 }
 
 /**
- * Multiplies two quat's
+ * Multiplies two quat_32's
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a the first operand
- * @param {ReadonlyQuat} b the second operand
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a the first operand
+ * @param {ReadonlyQuat_32} b the second operand
  */
-export function multiply(out: quat, a: ReadonlyQuat, b: ReadonlyQuat): void {
+export function multiply(out: quat_32, a: ReadonlyQuat_32, b: ReadonlyQuat_32): void {
   const ax = a[0],
     ay = a[1],
     az = a[2],
@@ -116,11 +116,11 @@ export function multiply(out: quat, a: ReadonlyQuat, b: ReadonlyQuat): void {
 /**
  * Rotates a quaternion by the given angle about the X axis
  *
- * @param {quat} out quat receiving operation result
- * @param {ReadonlyQuat} a quat to rotate
+ * @param {quat_32} out quat_32 receiving operation result
+ * @param {ReadonlyQuat_32} a quat_32 to rotate
  * @param {number} rad angle (in radians) to rotate
  */
-export function rotateX(out: quat, a: ReadonlyQuat, rad: number): void {
+export function rotateX(out: quat_32, a: ReadonlyQuat_32, rad: number): void {
   rad *= 0.5;
 
   const ax = a[0],
@@ -139,11 +139,11 @@ export function rotateX(out: quat, a: ReadonlyQuat, rad: number): void {
 /**
  * Rotates a quaternion by the given angle about the Y axis
  *
- * @param {quat} out quat receiving operation result
- * @param {ReadonlyQuat} a quat to rotate
+ * @param {quat_32} out quat_32 receiving operation result
+ * @param {ReadonlyQuat_32} a quat_32 to rotate
  * @param {number} rad angle (in radians) to rotate
  */
-export function rotateY(out: quat, a: ReadonlyQuat, rad: number): void {
+export function rotateY(out: quat_32, a: ReadonlyQuat_32, rad: number): void {
   rad *= 0.5;
 
   const ax = a[0],
@@ -162,11 +162,11 @@ export function rotateY(out: quat, a: ReadonlyQuat, rad: number): void {
 /**
  * Rotates a quaternion by the given angle about the Z axis
  *
- * @param {quat} out quat receiving operation result
- * @param {ReadonlyQuat} a quat to rotate
+ * @param {quat_32} out quat_32 receiving operation result
+ * @param {ReadonlyQuat_32} a quat_32 to rotate
  * @param {number} rad angle (in radians) to rotate
  */
-export function rotateZ(out: quat, a: ReadonlyQuat, rad: number): void {
+export function rotateZ(out: quat_32, a: ReadonlyQuat_32, rad: number): void {
   rad *= 0.5;
 
   const ax = a[0],
@@ -187,10 +187,10 @@ export function rotateZ(out: quat, a: ReadonlyQuat, rad: number): void {
  * Assumes that quaternion is 1 unit in length.
  * Any existing W component will be ignored.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate W component of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate W component of
  */
-export function calculateW(out: quat, a: ReadonlyQuat): void {
+export function calculateW(out: quat_32, a: ReadonlyQuat_32): void {
   const x = a[0],
     y = a[1],
     z = a[2];
@@ -204,10 +204,10 @@ export function calculateW(out: quat, a: ReadonlyQuat): void {
 /**
  * Calculate the exponential of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate the exponential of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate the exponential of
  */
-export function exp(out: quat, a: ReadonlyQuat): void {
+export function exp(out: quat_32, a: ReadonlyQuat_32): void {
   const x = a[0],
     y = a[1],
     z = a[2],
@@ -226,10 +226,10 @@ export function exp(out: quat, a: ReadonlyQuat): void {
 /**
  * Calculate the natural logarithm of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate the exponential of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate the exponential of
  */
-export function ln(out: quat, a: ReadonlyQuat): void {
+export function ln(out: quat_32, a: ReadonlyQuat_32): void {
   const x = a[0],
     y = a[1],
     z = a[2],
@@ -247,25 +247,25 @@ export function ln(out: quat, a: ReadonlyQuat): void {
 /**
  * Calculate the scalar power of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate the exponential of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate the exponential of
  * @param {Number} b amount to scale the quaternion by
  */
-export function pow(out: quat, a: ReadonlyQuat, b: number): void {
+export function pow(out: quat_32, a: ReadonlyQuat_32, b: number): void {
   ln(out, a);
   vec4_fns.scale(out, out, b);
   exp(out, out);
 }
 
 /**
- * Performs a spherical linear interpolation between two quat
+ * Performs a spherical linear interpolation between two quat_32
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a the first operand
- * @param {ReadonlyQuat} b the second operand
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a the first operand
+ * @param {ReadonlyQuat_32} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
-export function slerp(out: quat, a: ReadonlyQuat, b: ReadonlyQuat, t: number): void {
+export function slerp(out: quat_32, a: ReadonlyQuat_32, b: ReadonlyQuat_32, t: number): void {
   // benchmarks:
   //    http://jsperf.com/quaternion-slerp-implementations
   let ax = a[0],
@@ -312,9 +312,9 @@ export function slerp(out: quat, a: ReadonlyQuat, b: ReadonlyQuat, t: number): v
 /**
  * Generates a random unit quaternion
  *
- * @param {quat} out the receiving quaternion
+ * @param {quat_32} out the receiving quaternion
  */
-export function random(out: quat): void {
+export function random(out: quat_32): void {
   // Implementation of http://planning.cs.uiuc.edu/node198.html
   // TODO: Calling random 3 times is probably not the fastest solution
   const u1 = Math.random();
@@ -331,12 +331,12 @@ export function random(out: quat): void {
 }
 
 /**
- * Calculates the inverse of a quat
+ * Calculates the inverse of a quat_32
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate inverse of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate inverse of
  */
-export function invert(out: quat, a: ReadonlyQuat): void {
+export function invert(out: quat_32, a: ReadonlyQuat_32): void {
   const a0 = a[0],
     a1 = a[1],
     a2 = a[2],
@@ -353,13 +353,13 @@ export function invert(out: quat, a: ReadonlyQuat): void {
 }
 
 /**
- * Calculates the conjugate of a quat
- * If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+ * Calculates the conjugate of a quat_32
+ * If the quaternion is normalized, this function is faster than quat_32.inverse and produces the same result.
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a quat to calculate conjugate of
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a quat_32 to calculate conjugate of
  */
-export function conjugate(out: quat, a: ReadonlyQuat): void {
+export function conjugate(out: quat_32, a: ReadonlyQuat_32): void {
   out[0] = -a[0];
   out[1] = -a[1];
   out[2] = -a[2];
@@ -369,14 +369,14 @@ export function conjugate(out: quat, a: ReadonlyQuat): void {
 /**
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
- * @param {quat} out the receiving quaternion
+ * @param {quat_32} out the receiving quaternion
  * @param {Number} x Angle to rotate around X axis in degrees.
  * @param {Number} y Angle to rotate around Y axis in degrees.
  * @param {Number} z Angle to rotate around Z axis in degrees.
  * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
  * @function
  */
-export function fromEuler(out: quat, x: number, y: number, z: number, order: AngleOrder = AngleOrder.ZYX): void {
+export function fromEuler(out: quat_32, x: number, y: number, z: number, order: AngleOrder = AngleOrder.ZYX): void {
   const halfToRad = Math.PI / 360;
   x *= halfToRad;
   z *= halfToRad;
@@ -442,11 +442,11 @@ export function fromEuler(out: quat, x: number, y: number, z: number, order: Ang
  *
  * Both quaternions are assumed to be unit length.
  *
- * @param {ReadonlyQuat} a The first unit quaternion.
- * @param {ReadonlyQuat} b The second unit quaternion.
+ * @param {ReadonlyQuat_32} a The first unit quaternion.
+ * @param {ReadonlyQuat_32} b The second unit quaternion.
  * @returns {Boolean} True if the quaternions are equal, false otherwise.
  */
-export function equals(a: ReadonlyQuat, b: ReadonlyQuat): boolean {
+export function equals(a: ReadonlyQuat_32, b: ReadonlyQuat_32): boolean {
     return Math.abs(vec4_fns.dot(a, b)) >= 1 - 0.000001;
 }
 
@@ -456,16 +456,16 @@ export function equals(a: ReadonlyQuat, b: ReadonlyQuat): boolean {
  *
  * Both vectors are assumed to be unit length.
  *
- * @param {quat} out the receiving quaternion.
- * @param {ReadonlyVec3} a the initial vector
- * @param {ReadonlyVec3} b the destination vector
+ * @param {quat_32} out the receiving quaternion.
+ * @param {ReadonlyVec3_32} a the initial vector
+ * @param {ReadonlyVec3_32} b the destination vector
  */
 export const rotationTo = (function () {
   const tmpvec3 = vec3_fns.create();
   const xUnitVec3 = vec3_fns.fromValues(1, 0, 0);
   const yUnitVec3 = vec3_fns.fromValues(0, 1, 0);
 
-  return function (out: quat, a: ReadonlyVec3, b: ReadonlyVec3): void {
+  return function (out: quat_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
     const dot = vec3_fns.dot(a, b);
     if (dot < -0.999999) {
       vec3_fns.cross(tmpvec3, xUnitVec3, a);
@@ -491,18 +491,18 @@ export const rotationTo = (function () {
 /**
  * Performs a spherical linear interpolation with two control points
  *
- * @param {quat} out the receiving quaternion
- * @param {ReadonlyQuat} a the first operand
- * @param {ReadonlyQuat} b the second operand
- * @param {ReadonlyQuat} c the third operand
- * @param {ReadonlyQuat} d the fourth operand
+ * @param {quat_32} out the receiving quaternion
+ * @param {ReadonlyQuat_32} a the first operand
+ * @param {ReadonlyQuat_32} b the second operand
+ * @param {ReadonlyQuat_32} c the third operand
+ * @param {ReadonlyQuat_32} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
 export const sqlerp = (function () {
   let temp1 = create();
   let temp2 = create();
 
-  return function (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: number): void {
+  return function (out: quat_32, a: ReadonlyQuat_32, b: ReadonlyQuat_32, c: ReadonlyQuat_32, d: ReadonlyQuat_32, t: number): void {
     slerp(temp1, a, d, t);
     slerp(temp2, b, c, t);
     slerp(out, temp1, temp2, 2 * t * (1 - t));

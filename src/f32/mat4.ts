@@ -1,4 +1,4 @@
-import { type mat4, type vec3, type quat, type ReadonlyMat4, type ReadonlyVec3, type ReadonlyQuat, type ReadonlyQuat2 } from "./types.js";
+import { type mat4_32, type vec3_32, type quat_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32, type ReadonlyQuat2_32 } from './types_32.js';
 
 /**
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
@@ -6,11 +6,11 @@ import { type mat4, type vec3, type quat, type ReadonlyMat4, type ReadonlyVec3, 
  */
 
 /**
- * Creates a new identity mat4
+ * Creates a new identity mat4_32
  *
- * @returns {mat4} a new 4x4 matrix
+ * @returns {mat4_32} a new 4x4 matrix
  */
-export function create(): mat4 {
+export function create(): mat4_32 {
   const out = new Float32Array(16);
   out[0] = 1;
   out[5] = 1;
@@ -20,12 +20,12 @@ export function create(): mat4 {
 }
 
 /**
- * Creates a new mat4 initialized with values from an existing matrix
+ * Creates a new mat4_32 initialized with values from an existing matrix
  *
- * @param {ReadonlyMat4} a matrix to clone
- * @returns {mat4} a new 4x4 matrix
+ * @param {ReadonlyMat4_32} a matrix to clone
+ * @returns {mat4_32} a new 4x4 matrix
  */
-export function clone(a: ReadonlyMat4): mat4 {
+export function clone(a: ReadonlyMat4_32): mat4_32 {
   const out = new Float32Array(16);
   out[0] = a[0];
   out[1] = a[1];
@@ -47,12 +47,12 @@ export function clone(a: ReadonlyMat4): mat4 {
 }
 
 /**
- * Copy the values from one mat4 to another
+ * Copy the values from one mat4_32 to another
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the source matrix
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the source matrix
  */
-export function copy(out: mat4, a: ReadonlyMat4): void {
+export function copy(out: mat4_32, a: ReadonlyMat4_32): void {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -72,7 +72,7 @@ export function copy(out: mat4, a: ReadonlyMat4): void {
 }
 
 /**
- * Create a new mat4 with the given values
+ * Create a new mat4_32 with the given values
  *
  * @param {Number} m00 Component in column 0, row 0 position (index 0)
  * @param {Number} m01 Component in column 0, row 1 position (index 1)
@@ -90,7 +90,7 @@ export function copy(out: mat4, a: ReadonlyMat4): void {
  * @param {Number} m31 Component in column 3, row 1 position (index 13)
  * @param {Number} m32 Component in column 3, row 2 position (index 14)
  * @param {Number} m33 Component in column 3, row 3 position (index 15)
- * @returns {mat4} A new mat4
+ * @returns {mat4_32} A new mat4_32
  */
 export function fromValues(
   m00: number,
@@ -109,7 +109,7 @@ export function fromValues(
   m31: number,
   m32: number,
   m33: number
-): mat4 {
+): mat4_32 {
   const out = new Float32Array(16);
   out[0] = m00;
   out[1] = m01;
@@ -131,9 +131,9 @@ export function fromValues(
 }
 
 /**
- * Set the components of a mat4 to the given values
+ * Set the components of a mat4_32 to the given values
  *
- * @param {mat4} out the receiving matrix
+ * @param {mat4_32} out the receiving matrix
  * @param {Number} m00 Component in column 0, row 0 position (index 0)
  * @param {Number} m01 Component in column 0, row 1 position (index 1)
  * @param {Number} m02 Component in column 0, row 2 position (index 2)
@@ -152,7 +152,7 @@ export function fromValues(
  * @param {Number} m33 Component in column 3, row 3 position (index 15)
  */
 export function set(
-  out: mat4,
+  out: mat4_32,
   m00: number,
   m01: number,
   m02: number,
@@ -189,11 +189,11 @@ export function set(
 }
 
 /**
- * Set a mat4 to the identity matrix
+ * Set a mat4_32 to the identity matrix
  *
- * @param {mat4} out the receiving matrix
+ * @param {mat4_32} out the receiving matrix
  */
-export function identity(out: mat4): void {
+export function identity(out: mat4_32): void {
   out[0] = 1;
   out[1] = 0;
   out[2] = 0;
@@ -213,12 +213,12 @@ export function identity(out: mat4): void {
 }
 
 /**
- * Transpose the values of a mat4
+ * Transpose the values of a mat4_32
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the source matrix
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the source matrix
  */
-export function transpose(out: mat4, a: ReadonlyMat4): void {
+export function transpose(out: mat4_32, a: ReadonlyMat4_32): void {
   // If we are transposing ourselves we can skip a few steps but have to cache some values
   if (out === a) {
     const a01 = a[1],
@@ -261,12 +261,12 @@ export function transpose(out: mat4, a: ReadonlyMat4): void {
 }
 
 /**
- * Inverts a mat4
+ * Inverts a mat4_32
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the source matrix
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the source matrix
  */
-export function invert(out: mat4, a: ReadonlyMat4): void {
+export function invert(out: mat4_32, a: ReadonlyMat4_32): void {
   const a00 = a[0],
     a01 = a[1],
     a02 = a[2],
@@ -320,12 +320,12 @@ export function invert(out: mat4, a: ReadonlyMat4): void {
 }
 
 /**
- * Calculates the adjugate of a mat4
+ * Calculates the adjugate of a mat4_32
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the source matrix
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the source matrix
  */
-export function adjoint(out: mat4, a: ReadonlyMat4): void {
+export function adjoint(out: mat4_32, a: ReadonlyMat4_32): void {
   const a00 = a[0],
     a01 = a[1],
     a02 = a[2],
@@ -375,12 +375,12 @@ export function adjoint(out: mat4, a: ReadonlyMat4): void {
 }
 
 /**
- * Calculates the determinant of a mat4
+ * Calculates the determinant of a mat4_32
  *
- * @param {ReadonlyMat4} a the source matrix
+ * @param {ReadonlyMat4_32} a the source matrix
  * @returns {Number} determinant of a
  */
-export function determinant(a: ReadonlyMat4): number {
+export function determinant(a: ReadonlyMat4_32): number {
   const a00 = a[0],
     a01 = a[1],
     a02 = a[2],
@@ -416,11 +416,11 @@ export function determinant(a: ReadonlyMat4): number {
 /**
  * Multiplies two mat4s
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the first operand
- * @param {ReadonlyMat4} b the second operand
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the first operand
+ * @param {ReadonlyMat4_32} b the second operand
  */
-export function multiply(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
+export function multiply(out: mat4_32, a: ReadonlyMat4_32, b: ReadonlyMat4_32): void {
   const a00 = a[0],
     a01 = a[1],
     a02 = a[2],
@@ -477,13 +477,13 @@ export function multiply(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
 }
 
 /**
- * Translate a mat4 by the given vector
+ * Translate a mat4_32 by the given vector
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to translate
- * @param {ReadonlyVec3} v vector to translate by
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to translate
+ * @param {ReadonlyVec3_32} v vector to translate by
  */
-export function translate(out: mat4, a: ReadonlyMat4, v: ReadonlyVec3): void {
+export function translate(out: mat4_32, a: ReadonlyMat4_32, v: ReadonlyVec3_32): void {
   const x = v[0],
     y = v[1],
     z = v[2];
@@ -528,13 +528,13 @@ export function translate(out: mat4, a: ReadonlyMat4, v: ReadonlyVec3): void {
 }
 
 /**
- * Scales the mat4 by the dimensions in the given vec3 not using vectorization
+ * Scales the mat4_32 by the dimensions in the given vec3_32 not using vectorization
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to scale
- * @param {ReadonlyVec3} v the vec3 to scale the matrix by
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to scale
+ * @param {ReadonlyVec3_32} v the vec3_32 to scale the matrix by
  **/
-export function scale(out: mat4, a: ReadonlyMat4, v: ReadonlyVec3): void {
+export function scale(out: mat4_32, a: ReadonlyMat4_32, v: ReadonlyVec3_32): void {
   const x = v[0],
     y = v[1],
     z = v[2];
@@ -558,14 +558,14 @@ export function scale(out: mat4, a: ReadonlyMat4, v: ReadonlyVec3): void {
 }
 
 /**
- * Rotates a mat4 by the given angle around the given axis
+ * Rotates a mat4_32 by the given angle around the given axis
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to rotate
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
- * @param {ReadonlyVec3} axis the axis to rotate around
+ * @param {ReadonlyVec3_32} axis the axis to rotate around
  */
-export function rotate(out: Float32Array, a: ReadonlyMat4, rad: number, axis: ReadonlyVec3): void {
+export function rotate(out: mat4_32, a: ReadonlyMat4_32, rad: number, axis: ReadonlyVec3_32): void {
   let x = axis[0],
     y = axis[1],
     z = axis[2];
@@ -629,11 +629,11 @@ export function rotate(out: Float32Array, a: ReadonlyMat4, rad: number, axis: Re
 /**
  * Rotates a matrix by the given angle around the X axis
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to rotate
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function rotateX(out: mat4, a: ReadonlyMat4, rad: number): void {
+export function rotateX(out: mat4_32, a: ReadonlyMat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
   const a10 = a[4];
@@ -671,11 +671,11 @@ export function rotateX(out: mat4, a: ReadonlyMat4, rad: number): void {
 /**
  * Rotates a matrix by the given angle around the Y axis
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to rotate
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function rotateY(out: mat4, a: ReadonlyMat4, rad: number): void {
+export function rotateY(out: mat4_32, a: ReadonlyMat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
   const a00 = a[0];
@@ -713,11 +713,11 @@ export function rotateY(out: mat4, a: ReadonlyMat4, rad: number): void {
 /**
  * Rotates a matrix by the given angle around the Z axis
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to rotate
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function rotateZ(out: mat4, a: ReadonlyMat4, rad: number): void {
+export function rotateZ(out: mat4_32, a: ReadonlyMat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
   const a00 = a[0];
@@ -759,10 +759,10 @@ export function rotateZ(out: mat4, a: ReadonlyMat4, rad: number): void {
  *     mat4.identity(dest);
  *     mat4.translate(dest, dest, vec);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyVec3} v Translation vector
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyVec3_32} v Translation vector
  */
-export function fromTranslation(out: mat4, v: ReadonlyVec3): void {
+export function fromTranslation(out: mat4_32, v: ReadonlyVec3_32): void {
   out[0] = 1;
   out[1] = 0;
   out[2] = 0;
@@ -788,10 +788,10 @@ export function fromTranslation(out: mat4, v: ReadonlyVec3): void {
  *     mat4.identity(dest);
  *     mat4.scale(dest, dest, vec);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyVec3} v Scaling vector
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyVec3_32} v Scaling vector
  */
-export function fromScaling(out: mat4, v: ReadonlyVec3): void {
+export function fromScaling(out: mat4_32, v: ReadonlyVec3_32): void {
   out[0] = v[0];
   out[1] = 0;
   out[2] = 0;
@@ -817,11 +817,11 @@ export function fromScaling(out: mat4, v: ReadonlyVec3): void {
  *     mat4.identity(dest);
  *     mat4.rotate(dest, dest, rad, axis);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {mat4_32} out mat4_32 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
- * @param {ReadonlyVec3} axis the axis to rotate around
+ * @param {ReadonlyVec3_32} axis the axis to rotate around
  */
-export function fromRotation(out: mat4, rad: number, axis: ReadonlyVec3): void {
+export function fromRotation(out: mat4_32, rad: number, axis: ReadonlyVec3_32): void {
   let x = axis[0],
     y = axis[1],
     z = axis[2];
@@ -861,10 +861,10 @@ export function fromRotation(out: mat4, rad: number, axis: ReadonlyVec3): void {
  *     mat4.identity(dest);
  *     mat4.rotateX(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {mat4_32} out mat4_32 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function fromXRotation(out: mat4, rad: number): void {
+export function fromXRotation(out: mat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
 
@@ -894,10 +894,10 @@ export function fromXRotation(out: mat4, rad: number): void {
  *     mat4.identity(dest);
  *     mat4.rotateY(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {mat4_32} out mat4_32 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function fromYRotation(out: mat4, rad: number): void {
+export function fromYRotation(out: mat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
 
@@ -927,10 +927,10 @@ export function fromYRotation(out: mat4, rad: number): void {
  *     mat4.identity(dest);
  *     mat4.rotateZ(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {mat4_32} out mat4_32 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
  */
-export function fromZRotation(out: mat4, rad: number): void {
+export function fromZRotation(out: mat4_32, rad: number): void {
   const s = Math.sin(rad);
   const c = Math.cos(rad);
 
@@ -963,11 +963,11 @@ export function fromZRotation(out: mat4, rad: number): void {
  *     quat4.toMat4(quat, quatMat);
  *     mat4.multiply(dest, quatMat);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyQuat} q Rotation quaternion
- * @param {ReadonlyVec3} v Translation vector
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyQuat_32} q Rotation quaternion
+ * @param {ReadonlyVec3_32} v Translation vector
  */
-export function fromRotationTranslation(out: mat4, q: ReadonlyQuat, v: ReadonlyVec3): void {
+export function fromRotationTranslation(out: mat4_32, q: ReadonlyQuat_32, v: ReadonlyVec3_32): void {
   // Quaternion math
   const x = q[0],
     y = q[1],
@@ -1008,12 +1008,12 @@ export function fromRotationTranslation(out: mat4, q: ReadonlyQuat, v: ReadonlyV
 const fromQuat2_temp_translation = new Float32Array(3);
 
 /**
- * Creates a new mat4 from a dual quat.
+ * Creates a new mat4_32 from a dual quat.
  *
- * @param {mat4} out Matrix
- * @param {ReadonlyQuat2} a Dual Quaternion
+ * @param {mat4_32} out Matrix
+ * @param {ReadonlyQuat2_32} a Dual Quaternion
  */
-export function fromQuat2(out: mat4, a: ReadonlyQuat2): void {
+export function fromQuat2(out: mat4_32, a: ReadonlyQuat2_32): void {
   const bx = -a[0],
     by = -a[1],
     bz = -a[2],
@@ -1042,10 +1042,10 @@ export function fromQuat2(out: mat4, a: ReadonlyQuat2): void {
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector
  *  originally supplied.
- * @param  {vec3} out Vector to receive translation component
- * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
+ * @param  {vec3_32} out Vector to receive translation component
+ * @param  {ReadonlyMat4_32} mat Matrix to be decomposed (input)
  */
-export function getTranslation(out: vec3, mat: ReadonlyMat4): void {
+export function getTranslation(out: vec3_32, mat: ReadonlyMat4_32): void {
   out[0] = mat[12];
   out[1] = mat[13];
   out[2] = mat[14];
@@ -1057,10 +1057,10 @@ export function getTranslation(out: vec3, mat: ReadonlyMat4): void {
  *  with a normalized Quaternion paramter, the returned vector will be
  *  the same as the scaling vector
  *  originally supplied.
- * @param  {vec3} out Vector to receive scaling factor component
- * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
+ * @param  {vec3_32} out Vector to receive scaling factor component
+ * @param  {ReadonlyMat4_32} mat Matrix to be decomposed (input)
  */
-export function getScaling(out: vec3, mat: ReadonlyMat4): void {
+export function getScaling(out: vec3_32, mat: ReadonlyMat4_32): void {
   const m11 = mat[0];
   const m12 = mat[1];
   const m13 = mat[2];
@@ -1083,10 +1083,10 @@ const getRotation_temp_scaling = new Float32Array(3);
  *  of a transformation matrix. If a matrix is built with
  *  fromRotationTranslation, the returned quaternion will be the
  *  same as the quaternion originally supplied.
- * @param {quat} out Quaternion to receive the rotation component
- * @param {ReadonlyMat4} mat Matrix to be decomposed (input)
+ * @param {quat_32} out Quaternion to receive the rotation component
+ * @param {ReadonlyMat4_32} mat Matrix to be decomposed (input)
  */
-export function getRotation(out: quat, mat: ReadonlyMat4): void {
+export function getRotation(out: quat_32, mat: ReadonlyMat4_32): void {
   getScaling(getRotation_temp_scaling, mat);
 
   const is1 = 1 / getRotation_temp_scaling[0];
@@ -1136,12 +1136,12 @@ export function getRotation(out: quat, mat: ReadonlyMat4): void {
 /**
  * Decomposes a transformation matrix into its rotation, translation
  * and scale components. Returns only the rotation component
- * @param  {quat} out_r Quaternion to receive the rotation component
- * @param  {vec3} out_t Vector to receive the translation vector
- * @param  {vec3} out_s Vector to receive the scaling factor
- * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
+ * @param  {quat_32} out_r Quaternion to receive the rotation component
+ * @param  {vec3_32} out_t Vector to receive the translation vector
+ * @param  {vec3_32} out_s Vector to receive the scaling factor
+ * @param  {ReadonlyMat4_32} mat Matrix to be decomposed (input)
  */
-export function decompose(out_r: quat, out_t: vec3, out_s: vec3, mat: ReadonlyMat4): void {
+export function decompose(out_r: quat_32, out_t: vec3_32, out_s: vec3_32, mat: ReadonlyMat4_32): void {
   out_t[0] = mat[12];
   out_t[1] = mat[13];
   out_t[2] = mat[14];
@@ -1215,12 +1215,12 @@ export function decompose(out_r: quat, out_t: vec3, out_s: vec3, mat: ReadonlyMa
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyQuat} q Rotation quaternion
- * @param {ReadonlyVec3} v Translation vector
- * @param {ReadonlyVec3} s Scaling vector
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyQuat_32} q Rotation quaternion
+ * @param {ReadonlyVec3_32} v Translation vector
+ * @param {ReadonlyVec3_32} s Scaling vector
  */
-export function fromRotationTranslationScale(out: mat4, q: ReadonlyQuat, v: ReadonlyVec3, s: ReadonlyVec3): void {
+export function fromRotationTranslationScale(out: mat4_32, q: ReadonlyQuat_32, v: ReadonlyVec3_32, s: ReadonlyVec3_32): void {
   // Quaternion math
   const x = q[0],
     y = q[1],
@@ -1274,13 +1274,13 @@ export function fromRotationTranslationScale(out: mat4, q: ReadonlyQuat, v: Read
  *     mat4.scale(dest, scale)
  *     mat4.translate(dest, negativeOrigin);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyQuat} q Rotation quaternion
- * @param {ReadonlyVec3} v Translation vector
- * @param {ReadonlyVec3} s Scaling vector
- * @param {ReadonlyVec3} o The origin vector around which to scale and rotate
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyQuat_32} q Rotation quaternion
+ * @param {ReadonlyVec3_32} v Translation vector
+ * @param {ReadonlyVec3_32} s Scaling vector
+ * @param {ReadonlyVec3_32} o The origin vector around which to scale and rotate
  */
-export function fromRotationTranslationScaleOrigin(out: mat4, q: ReadonlyQuat, v: ReadonlyVec3, s: ReadonlyVec3, o: ReadonlyVec3): void {
+export function fromRotationTranslationScaleOrigin(out: mat4_32, q: ReadonlyQuat_32, v: ReadonlyVec3_32, s: ReadonlyVec3_32, o: ReadonlyVec3_32): void {
   // Quaternion math
   const x = q[0],
     y = q[1],
@@ -1339,10 +1339,10 @@ export function fromRotationTranslationScaleOrigin(out: mat4, q: ReadonlyQuat, v
 /**
  * Calculates a 4x4 matrix from the given quaternion
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {ReadonlyQuat} q Quaternion to create matrix from
+ * @param {mat4_32} out mat4_32 receiving operation result
+ * @param {ReadonlyQuat_32} q Quaternion to create matrix from
  */
-export function fromQuat(out: mat4, q: ReadonlyQuat): void {
+export function fromQuat(out: mat4_32, q: ReadonlyQuat_32): void {
   const x = q[0],
     y = q[1],
     z = q[2],
@@ -1385,7 +1385,7 @@ export function fromQuat(out: mat4, q: ReadonlyQuat): void {
 /**
  * Generates a frustum matrix with the given bounds
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {Number} left Left bound of the frustum
  * @param {Number} right Right bound of the frustum
  * @param {Number} bottom Bottom bound of the frustum
@@ -1393,7 +1393,7 @@ export function fromQuat(out: mat4, q: ReadonlyQuat): void {
  * @param {Number} near Near bound of the frustum
  * @param {Number} far Far bound of the frustum
  */
-export function frustum(out: mat4, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
+export function frustum(out: mat4_32, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
   const rl = 1 / (right - left);
   const tb = 1 / (top - bottom);
   const nf = 1 / (near - far);
@@ -1421,13 +1421,13 @@ export function frustum(out: mat4, left: number, right: number, bottom: number, 
  * which matches WebGL/OpenGL's clip volume.
  * Passing null/undefined/no value for far will generate infinite projection matrix.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {number} fovy Vertical field of view in radians
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum, can be Infinity
  */
-export function perspectiveNO(out: mat4, fovy: number, aspect: number, near: number, far: number): void {
+export function perspectiveNO(out: mat4_32, fovy: number, aspect: number, near: number, far: number): void {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1459,13 +1459,13 @@ export function perspectiveNO(out: mat4, fovy: number, aspect: number, near: num
  * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
  * Passing null/undefined/no value for far will generate infinite projection matrix.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {number} fovy Vertical field of view in radians
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum, can be Infinity
  */
-export function perspectiveZO(out: mat4, fovy: number, aspect: number, near: number, far: number): void {
+export function perspectiveZO(out: mat4_32, fovy: number, aspect: number, near: number, far: number): void {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1496,7 +1496,7 @@ export function perspectiveZO(out: mat4, fovy: number, aspect: number, near: num
  * This is primarily useful for generating projection matrices to be used
  * with the still experiemental WebVR API.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {number} fovUpDegrees FOV up degrees
  * @param {number} fovDownDegrees FOV down degrees
  * @param {number} fovLeftDegrees FOV left degrees
@@ -1504,7 +1504,7 @@ export function perspectiveZO(out: mat4, fovy: number, aspect: number, near: num
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
  */
-export function perspectiveFromFieldOfView(out: mat4, fovUpDegrees: number, fovDownDegrees: number, fovLeftDegrees: number, fovRightDegrees: number, near: number, far: number): void {
+export function perspectiveFromFieldOfView(out: mat4_32, fovUpDegrees: number, fovDownDegrees: number, fovLeftDegrees: number, fovRightDegrees: number, near: number, far: number): void {
   const upTan = Math.tan((fovUpDegrees * Math.PI) / 180.0);
   const downTan = Math.tan((fovDownDegrees * Math.PI) / 180.0);
   const leftTan = Math.tan((fovLeftDegrees * Math.PI) / 180.0);
@@ -1535,7 +1535,7 @@ export function perspectiveFromFieldOfView(out: mat4, fovUpDegrees: number, fovD
  * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
  * which matches WebGL/OpenGL's clip volume.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {number} left Left bound of the frustum
  * @param {number} right Right bound of the frustum
  * @param {number} bottom Bottom bound of the frustum
@@ -1543,7 +1543,7 @@ export function perspectiveFromFieldOfView(out: mat4, fovUpDegrees: number, fovD
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
  */
-export function orthoNO(out: mat4, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
+export function orthoNO(out: mat4_32, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
   const lr = 1 / (left - right);
   const bt = 1 / (bottom - top);
   const nf = 1 / (near - far);
@@ -1570,7 +1570,7 @@ export function orthoNO(out: mat4, left: number, right: number, bottom: number, 
  * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
  * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
  * @param {number} left Left bound of the frustum
  * @param {number} right Right bound of the frustum
  * @param {number} bottom Bottom bound of the frustum
@@ -1578,7 +1578,7 @@ export function orthoNO(out: mat4, left: number, right: number, bottom: number, 
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
  */
-export function orthoZO(out: mat4, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
+export function orthoZO(out: mat4_32, left: number, right: number, bottom: number, top: number, near: number, far: number): void {
   const lr = 1 / (left - right);
   const bt = 1 / (bottom - top);
   const nf = 1 / (near - far);
@@ -1604,12 +1604,12 @@ export function orthoZO(out: mat4, left: number, right: number, bottom: number, 
  * Generates a look-at matrix with the given eye position, focal point, and up axis.
  * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
- * @param {ReadonlyVec3} eye Position of the viewer
- * @param {ReadonlyVec3} center Point the viewer is looking at
- * @param {ReadonlyVec3} up vec3 pointing up
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
+ * @param {ReadonlyVec3_32} eye Position of the viewer
+ * @param {ReadonlyVec3_32} center Point the viewer is looking at
+ * @param {ReadonlyVec3_32} up vec3_32 pointing up
  */
-export function lookAt(out: mat4, eye: ReadonlyVec3, center: ReadonlyVec3, up: ReadonlyVec3): void {
+export function lookAt(out: mat4_32, eye: ReadonlyVec3_32, center: ReadonlyVec3_32, up: ReadonlyVec3_32): void {
   const eyex = eye[0];
   const eyey = eye[1];
   const eyez = eye[2];
@@ -1690,12 +1690,12 @@ export function lookAt(out: mat4, eye: ReadonlyVec3, center: ReadonlyVec3, up: R
 /**
  * Generates a matrix that makes something look at something else.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
- * @param {ReadonlyVec3} eye Position of the viewer
- * @param {ReadonlyVec3} target Point the viewer is looking at
- * @param {ReadonlyVec3} up vec3 pointing up
+ * @param {mat4_32} out mat4_32 frustum matrix will be written into
+ * @param {ReadonlyVec3_32} eye Position of the viewer
+ * @param {ReadonlyVec3_32} target Point the viewer is looking at
+ * @param {ReadonlyVec3_32} up vec3_32 pointing up
  */
-export function targetTo(out: mat4, eye: ReadonlyVec3, target: ReadonlyVec3, up: ReadonlyVec3): void {
+export function targetTo(out: mat4_32, eye: ReadonlyVec3_32, target: ReadonlyVec3_32, up: ReadonlyVec3_32): void {
   const eyex = eye[0],
     eyey = eye[1],
     eyez = eye[2],
@@ -1746,12 +1746,12 @@ export function targetTo(out: mat4, eye: ReadonlyVec3, target: ReadonlyVec3, up:
 }
 
 /**
- * Returns Frobenius norm of a mat4
+ * Returns Frobenius norm of a mat4_32
  *
- * @param {ReadonlyMat4} a the matrix to calculate Frobenius norm of
+ * @param {ReadonlyMat4_32} a the matrix to calculate Frobenius norm of
  * @returns {Number} Frobenius norm
  */
-export function frob(a: ReadonlyMat4): number {
+export function frob(a: ReadonlyMat4_32): number {
   return Math.sqrt(
     a[0] * a[0] +
     a[1] * a[1] +
@@ -1775,11 +1775,11 @@ export function frob(a: ReadonlyMat4): number {
 /**
  * Adds two mat4's
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the first operand
- * @param {ReadonlyMat4} b the second operand
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the first operand
+ * @param {ReadonlyMat4_32} b the second operand
  */
-export function add(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
+export function add(out: mat4_32, a: ReadonlyMat4_32, b: ReadonlyMat4_32): void {
   out[0] = a[0] + b[0];
   out[1] = a[1] + b[1];
   out[2] = a[2] + b[2];
@@ -1801,11 +1801,11 @@ export function add(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
 /**
  * Subtracts matrix b from matrix a
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the first operand
- * @param {ReadonlyMat4} b the second operand
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the first operand
+ * @param {ReadonlyMat4_32} b the second operand
  */
-export function subtract(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
+export function subtract(out: mat4_32, a: ReadonlyMat4_32, b: ReadonlyMat4_32): void {
   out[0] = a[0] - b[0];
   out[1] = a[1] - b[1];
   out[2] = a[2] - b[2];
@@ -1827,11 +1827,11 @@ export function subtract(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4): void {
 /**
  * Multiply each element of the matrix by a scalar.
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to scale
+ * @param {mat4_32} out the receiving matrix
+ * @param {ReadonlyMat4_32} a the matrix to scale
  * @param {Number} b amount to scale the matrix's elements by
  */
-export function multiplyScalar(out: mat4, a: ReadonlyMat4, b: number): void {
+export function multiplyScalar(out: mat4_32, a: ReadonlyMat4_32, b: number): void {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   out[2] = a[2] * b;
@@ -1851,14 +1851,14 @@ export function multiplyScalar(out: mat4, a: ReadonlyMat4, b: number): void {
 }
 
 /**
- * Adds two mat4's after multiplying each element of the second operand by a scalar value.
+ * Adds two mat4_32's after multiplying each element of the second operand by a scalar value.
  *
- * @param {mat4} out the receiving vector
- * @param {ReadonlyMat4} a the first operand
- * @param {ReadonlyMat4} b the second operand
+ * @param {mat4_32} out the receiving vector
+ * @param {ReadonlyMat4_32} a the first operand
+ * @param {ReadonlyMat4_32} b the second operand
  * @param {Number} scale the amount to scale b's elements by before adding
  */
-export function multiplyScalarAndAdd(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4, scale: number): void {
+export function multiplyScalarAndAdd(out: mat4_32, a: ReadonlyMat4_32, b: ReadonlyMat4_32, scale: number): void {
   out[0] = a[0] + b[0] * scale;
   out[1] = a[1] + b[1] * scale;
   out[2] = a[2] + b[2] * scale;
@@ -1880,11 +1880,11 @@ export function multiplyScalarAndAdd(out: mat4, a: ReadonlyMat4, b: ReadonlyMat4
 /**
  * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
  *
- * @param {ReadonlyMat4} a The first matrix.
- * @param {ReadonlyMat4} b The second matrix.
+ * @param {ReadonlyMat4_32} a The first matrix.
+ * @param {ReadonlyMat4_32} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
-export function exactEquals(a: ReadonlyMat4, b: ReadonlyMat4): boolean {
+export function exactEquals(a: ReadonlyMat4_32, b: ReadonlyMat4_32): boolean {
   return (
     a[0] === b[0] &&
     a[1] === b[1] &&
@@ -1908,11 +1908,11 @@ export function exactEquals(a: ReadonlyMat4, b: ReadonlyMat4): boolean {
 /**
  * Returns whether or not the matrices have approximately the same elements in the same position.
  *
- * @param {ReadonlyMat4} a The first matrix.
- * @param {ReadonlyMat4} b The second matrix.
+ * @param {ReadonlyMat4_32} a The first matrix.
+ * @param {ReadonlyMat4_32} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
-export function equals(a: ReadonlyMat4, b: ReadonlyMat4): boolean {
+export function equals(a: ReadonlyMat4_32, b: ReadonlyMat4_32): boolean {
   const a0 = a[0],
     a1 = a[1],
     a2 = a[2],

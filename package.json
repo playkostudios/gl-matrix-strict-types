@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./f32": "./dist/f32/index.js"
   },
   "files": [
     "dist/**/*.d.ts",
