@@ -9,7 +9,8 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./f32": "./dist/f32/index_32.js"
+    "./f32": "./dist/f32/index_32.js",
+    "./f64": "./dist/f32/index_64.js"
   },
   "files": [
     "dist/**/*.d.ts",
