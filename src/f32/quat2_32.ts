@@ -1,7 +1,7 @@
-import * as quat_fns from './quat_32.js';
-import * as mat4_fns from './mat4_32.js';
-import * as vec4_fns from './vec4_32.js';
-import { type quat2_32, type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32, type ReadonlyQuat2_32 } from './types_32.js';
+import * as f_quat_32 from './quat_32.js';
+import * as f_mat4_32 from './mat4_32.js';
+import * as f_vec4_32 from './vec4_32.js';
+import { type quat2_32, type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32, type ReadonlyQuat2_32 } from '..//types_32.js';
 
 /**
  * Dual Quaternion<br>
@@ -171,8 +171,8 @@ const fromMat4_temp_t = new Float32Array(3);
  * @function
  */
 export function fromMat4(out: quat2_32, a: ReadonlyMat4_32): void {
-  mat4_fns.getRotation(fromMat4_temp_outer, a);
-  mat4_fns.getTranslation(fromMat4_temp_t, a);
+  f_mat4_32.getRotation(fromMat4_temp_outer, a);
+  f_mat4_32.getTranslation(fromMat4_temp_t, a);
   fromRotationTranslation(out, fromMat4_temp_outer, fromMat4_temp_t);
 }
 
@@ -330,7 +330,7 @@ export function rotateX(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
-  quat_fns.rotateX(out, a, rad);
+  f_quat_32.rotateX(out, a, rad);
   bx = out[0];
   by = out[1];
   bz = out[2];
@@ -361,7 +361,7 @@ export function rotateY(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
-  quat_fns.rotateY(out, a, rad);
+  f_quat_32.rotateY(out, a, rad);
   bx = out[0];
   by = out[1];
   bz = out[2];
@@ -392,7 +392,7 @@ export function rotateZ(out: quat2_32, a: ReadonlyQuat2_32, rad: number): void {
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
-  quat_fns.rotateZ(out, a, rad);
+  f_quat_32.rotateZ(out, a, rad);
   bx = out[0];
   by = out[1];
   bz = out[2];
@@ -621,7 +621,7 @@ export function scale(out: quat2_32, a: ReadonlyQuat2_32, b: number): void {
  */
 export function lerp(out: quat2_32, a: ReadonlyQuat2_32, b: ReadonlyQuat2_32, t: number): void {
   const mt = 1 - t;
-  if (vec4_fns.dot(a, b) < 0) t = -t;
+  if (f_vec4_32.dot(a, b) < 0) t = -t;
 
   out[0] = a[0] * mt + b[0] * t;
   out[1] = a[1] * mt + b[1] * t;
@@ -640,7 +640,7 @@ export function lerp(out: quat2_32, a: ReadonlyQuat2_32, b: ReadonlyQuat2_32, t:
  * @param {ReadonlyQuat2_32} a dual quat to calculate inverse of
  */
 export function invert(out: quat2_32, a: ReadonlyQuat2_32): void {
-  const sqlen = vec4_fns.squaredLength(a);
+  const sqlen = f_vec4_32.squaredLength(a);
   out[0] = -a[0] / sqlen;
   out[1] = -a[1] / sqlen;
   out[2] = -a[2] / sqlen;
@@ -677,7 +677,7 @@ export function conjugate(out: quat2_32, a: ReadonlyQuat2_32): void {
  * @function
  */
 export function normalize(out: quat2_32, a: ReadonlyQuat2_32): void {
-  let magnitude = vec4_fns.squaredLength(a);
+  let magnitude = f_vec4_32.squaredLength(a);
   if (magnitude > 0) {
     magnitude = Math.sqrt(magnitude);
 

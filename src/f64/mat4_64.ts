@@ -1,4 +1,4 @@
-import { type mat4_64, type vec3_64, type quat_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64, type ReadonlyQuat2_64 } from './types_64.js';
+import { type mat4_64, type vec3_64, type quat_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64, type ReadonlyQuat2_64 } from '..//types_64.js';
 
 /**
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.

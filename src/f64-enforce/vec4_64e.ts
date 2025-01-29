@@ -1,18 +1,12 @@
 import { type vec4_64, type ReadonlyMat4_64, type ReadonlyQuat_64, type ReadonlyVec4_64 } from '..//types_64.js';
+import * as f_vec4_64 from '../f64/vec4_64.js';
+export { create, fromValues } from '../f64/vec4_64.js';
+import { assert_64 } from './assert_64.js';
 
 /**
  * 4 Dimensional Vector
  * @module vec4
  */
-
-/**
- * Creates a new, empty vec4_64
- *
- * @returns {vec4_64} a new 4D vector
- */
-export function create(): vec4_64 {
-  return new Float64Array(4);
-}
 
 /**
  * Creates a new vec4_64 initialized with values from an existing vector
@@ -21,30 +15,8 @@ export function create(): vec4_64 {
  * @returns {vec4_64} a new 4D vector
  */
 export function clone(a: ReadonlyVec4_64): vec4_64 {
-  const out = new Float64Array(4);
-  out[0] = a[0];
-  out[1] = a[1];
-  out[2] = a[2];
-  out[3] = a[3];
-  return out;
-}
-
-/**
- * Creates a new vec4_64 initialized with the given values
- *
- * @param {Number} x X component
- * @param {Number} y Y component
- * @param {Number} z Z component
- * @param {Number} w W component
- * @returns {vec4_64} a new 4D vector
- */
-export function fromValues(x: number, y: number, z: number, w: number): vec4_64 {
-  const out = new Float64Array(4);
-  out[0] = x;
-  out[1] = y;
-  out[2] = z;
-  out[3] = w;
-  return out;
+  assert_64(a);
+  return f_vec4_64.clone(a);
 }
 
 /**
@@ -54,10 +26,9 @@ export function fromValues(x: number, y: number, z: number, w: number): vec4_64 
  * @param {ReadonlyVec4_64} a the source vector
  */
 export function copy(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = a[0];
-  out[1] = a[1];
-  out[2] = a[2];
-  out[3] = a[3];
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.copy(out, a);
 }
 
 /**
@@ -70,10 +41,8 @@ export function copy(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {Number} w W component
  */
 export function set(out: vec4_64, x: number, y: number, z: number, w: number): void {
-  out[0] = x;
-  out[1] = y;
-  out[2] = z;
-  out[3] = w;
+  assert_64(out);
+  f_vec4_64.set(out, x, y, z, w);
 }
 
 /**
@@ -84,10 +53,10 @@ export function set(out: vec4_64, x: number, y: number, z: number, w: number): v
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function add(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = a[0] + b[0];
-  out[1] = a[1] + b[1];
-  out[2] = a[2] + b[2];
-  out[3] = a[3] + b[3];
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.add(out, a, b);
 }
 
 /**
@@ -98,10 +67,10 @@ export function add(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void 
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function subtract(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = a[0] - b[0];
-  out[1] = a[1] - b[1];
-  out[2] = a[2] - b[2];
-  out[3] = a[3] - b[3];
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.subtract(out, a, b);
 }
 
 /**
@@ -112,10 +81,10 @@ export function subtract(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): 
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function multiply(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = a[0] * b[0];
-  out[1] = a[1] * b[1];
-  out[2] = a[2] * b[2];
-  out[3] = a[3] * b[3];
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.multiply(out, a, b);
 }
 
 /**
@@ -126,10 +95,10 @@ export function multiply(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): 
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function divide(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = a[0] / b[0];
-  out[1] = a[1] / b[1];
-  out[2] = a[2] / b[2];
-  out[3] = a[3] / b[3];
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.divide(out, a, b);
 }
 
 /**
@@ -139,10 +108,9 @@ export function divide(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): vo
  * @param {ReadonlyVec4_64} a vector to ceil
  */
 export function ceil(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = Math.ceil(a[0]);
-  out[1] = Math.ceil(a[1]);
-  out[2] = Math.ceil(a[2]);
-  out[3] = Math.ceil(a[3]);
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.ceil(out, a);
 }
 
 /**
@@ -152,10 +120,9 @@ export function ceil(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {ReadonlyVec4_64} a vector to floor
  */
 export function floor(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = Math.floor(a[0]);
-  out[1] = Math.floor(a[1]);
-  out[2] = Math.floor(a[2]);
-  out[3] = Math.floor(a[3]);
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.floor(out, a);
 }
 
 /**
@@ -166,10 +133,10 @@ export function floor(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function min(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = Math.min(a[0], b[0]);
-  out[1] = Math.min(a[1], b[1]);
-  out[2] = Math.min(a[2], b[2]);
-  out[3] = Math.min(a[3], b[3]);
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.min(out, a, b);
 }
 
 /**
@@ -180,10 +147,10 @@ export function min(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void 
  * @param {ReadonlyVec4_64} b the second operand
  */
 export function max(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void {
-  out[0] = Math.max(a[0], b[0]);
-  out[1] = Math.max(a[1], b[1]);
-  out[2] = Math.max(a[2], b[2]);
-  out[3] = Math.max(a[3], b[3]);
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.max(out, a, b);
 }
 
 /**
@@ -193,10 +160,9 @@ export function max(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64): void 
  * @param {ReadonlyVec4_64} a vector to round
  */
 export function round(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = Math.round(a[0]);
-  out[1] = Math.round(a[1]);
-  out[2] = Math.round(a[2]);
-  out[3] = Math.round(a[3]);
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.round(out, a);
 }
 
 /**
@@ -207,10 +173,9 @@ export function round(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {Number} b amount to scale the vector by
  */
 export function scale(out: vec4_64, a: ReadonlyVec4_64, b: number): void {
-  out[0] = a[0] * b;
-  out[1] = a[1] * b;
-  out[2] = a[2] * b;
-  out[3] = a[3] * b;
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.scale(out, a, b);
 }
 
 /**
@@ -222,10 +187,10 @@ export function scale(out: vec4_64, a: ReadonlyVec4_64, b: number): void {
  * @param {Number} scale the amount to scale b by before adding
  */
 export function scaleAndAdd(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64, scale: number): void {
-  out[0] = a[0] + b[0] * scale;
-  out[1] = a[1] + b[1] * scale;
-  out[2] = a[2] + b[2] * scale;
-  out[3] = a[3] + b[3] * scale;
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.scaleAndAdd(out, a, b, scale);
 }
 
 /**
@@ -236,11 +201,9 @@ export function scaleAndAdd(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64
  * @returns {Number} distance between a and b
  */
 export function distance(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number {
-  const x = b[0] - a[0];
-  const y = b[1] - a[1];
-  const z = b[2] - a[2];
-  const w = b[3] - a[3];
-  return Math.sqrt(x * x + y * y + z * z + w * w);
+  assert_64(a);
+  assert_64(b);
+  return f_vec4_64.distance(a, b);
 }
 
 /**
@@ -251,11 +214,9 @@ export function distance(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number {
-  const x = b[0] - a[0];
-  const y = b[1] - a[1];
-  const z = b[2] - a[2];
-  const w = b[3] - a[3];
-  return x * x + y * y + z * z + w * w;
+  assert_64(a);
+  assert_64(b);
+  return f_vec4_64.squaredDistance(a, b);
 }
 
 /**
@@ -265,11 +226,8 @@ export function squaredDistance(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number 
  * @returns {Number} length of a
  */
 export function length(a: ReadonlyVec4_64): number {
-  const x = a[0];
-  const y = a[1];
-  const z = a[2];
-  const w = a[3];
-  return Math.sqrt(x * x + y * y + z * z + w * w);
+  assert_64(a);
+  return f_vec4_64.length(a);
 }
 
 /**
@@ -279,11 +237,8 @@ export function length(a: ReadonlyVec4_64): number {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a: ReadonlyVec4_64): number {
-  const x = a[0];
-  const y = a[1];
-  const z = a[2];
-  const w = a[3];
-  return x * x + y * y + z * z + w * w;
+  assert_64(a);
+  return f_vec4_64.squaredLength(a);
 }
 
 /**
@@ -293,10 +248,9 @@ export function squaredLength(a: ReadonlyVec4_64): number {
  * @param {ReadonlyVec4_64} a vector to negate
  */
 export function negate(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = -a[0];
-  out[1] = -a[1];
-  out[2] = -a[2];
-  out[3] = -a[3];
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.negate(out, a);
 }
 
 /**
@@ -306,10 +260,9 @@ export function negate(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {ReadonlyVec4_64} a vector to invert
  */
 export function inverse(out: vec4_64, a: ReadonlyVec4_64): void {
-  out[0] = 1.0 / a[0];
-  out[1] = 1.0 / a[1];
-  out[2] = 1.0 / a[2];
-  out[3] = 1.0 / a[3];
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.inverse(out, a);
 }
 
 /**
@@ -319,18 +272,9 @@ export function inverse(out: vec4_64, a: ReadonlyVec4_64): void {
  * @param {ReadonlyVec4_64} a vector to normalize
  */
 export function normalize(out: vec4_64, a: ReadonlyVec4_64): void {
-  const x = a[0];
-  const y = a[1];
-  const z = a[2];
-  const w = a[3];
-  let len = x * x + y * y + z * z + w * w;
-  if (len > 0) {
-    len = 1 / Math.sqrt(len);
-  }
-  out[0] = x * len;
-  out[1] = y * len;
-  out[2] = z * len;
-  out[3] = w * len;
+  assert_64(out);
+  assert_64(a);
+  f_vec4_64.normalize(out, a);
 }
 
 /**
@@ -341,7 +285,9 @@ export function normalize(out: vec4_64, a: ReadonlyVec4_64): void {
  * @returns {Number} dot product of a and b
  */
 export function dot(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number {
-  return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+  assert_64(a);
+  assert_64(b);
+  return f_vec4_64.dot(a, b);
 }
 
 /**
@@ -353,21 +299,11 @@ export function dot(a: ReadonlyVec4_64, b: ReadonlyVec4_64): number {
  * @param {ReadonlyVec4_64} w the third vector
  */
 export function cross(out: vec4_64, u: ReadonlyVec4_64, v: ReadonlyVec4_64, w: ReadonlyVec4_64): void {
-  const A = v[0] * w[1] - v[1] * w[0],
-    B = v[0] * w[2] - v[2] * w[0],
-    C = v[0] * w[3] - v[3] * w[0],
-    D = v[1] * w[2] - v[2] * w[1],
-    E = v[1] * w[3] - v[3] * w[1],
-    F = v[2] * w[3] - v[3] * w[2];
-  const G = u[0];
-  const H = u[1];
-  const I = u[2];
-  const J = u[3];
-
-  out[0] = H * F - I * E + J * D;
-  out[1] = -(G * F) + I * C - J * B;
-  out[2] = G * E - H * C + J * A;
-  out[3] = -(G * D) + H * B - I * A;
+  assert_64(out);
+  assert_64(u);
+  assert_64(v);
+  assert_64(w);
+  f_vec4_64.cross(out, u, v, w);
 }
 
 /**
@@ -379,14 +315,10 @@ export function cross(out: vec4_64, u: ReadonlyVec4_64, v: ReadonlyVec4_64, w: R
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  */
 export function lerp(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64, t: number): void {
-  const ax = a[0];
-  const ay = a[1];
-  const az = a[2];
-  const aw = a[3];
-  out[0] = ax + t * (b[0] - ax);
-  out[1] = ay + t * (b[1] - ay);
-  out[2] = az + t * (b[2] - az);
-  out[3] = aw + t * (b[3] - aw);
+  assert_64(out);
+  assert_64(a);
+  assert_64(b);
+  f_vec4_64.lerp(out, a, b, t);
 }
 
 /**
@@ -395,24 +327,8 @@ export function lerp(out: vec4_64, a: ReadonlyVec4_64, b: ReadonlyVec4_64, t: nu
  * @param {vec4_64} out the receiving vector
  */
 export function random(out: vec4_64): void {
-  // Marsaglia, George. Choosing a Point from the Surface of a
-  // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.
-  // http://projecteuclid.org/euclid.aoms/1177692644;
-  let rand = Math.random();
-  const v1 = rand * 2 - 1;
-  const v2 = (4 * Math.random() - 2) * Math.sqrt(rand * -rand + rand);
-  const s1 = v1 * v1 + v2 * v2;
-
-  rand = Math.random();
-  const v3 = rand * 2 - 1;
-  const v4 = (4 * Math.random() - 2) * Math.sqrt(rand * -rand + rand);
-  const s2 = v3 * v3 + v4 * v4;
-
-  const d = Math.sqrt((1 - s1) / s2);
-  out[0] = v1;
-  out[1] = v2;
-  out[2] = v3 * d;
-  out[3] = v4 * d;
+  assert_64(out);
+  f_vec4_64.random(out);
 }
 
 /**
@@ -423,14 +339,10 @@ export function random(out: vec4_64): void {
  * @param {ReadonlyMat4_64} m matrix to transform with
  */
 export function transformMat4(out: vec4_64, a: ReadonlyVec4_64, m: ReadonlyMat4_64): void {
-  const x = a[0],
-    y = a[1],
-    z = a[2],
-    w = a[3];
-  out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
-  out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
-  out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
-  out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
+  assert_64(out);
+  assert_64(a);
+  assert_64(m);
+  f_vec4_64.transformMat4(out, a, m);
 }
 
 /**
@@ -441,25 +353,10 @@ export function transformMat4(out: vec4_64, a: ReadonlyVec4_64, m: ReadonlyMat4_
  * @param {ReadonlyQuat_64} q quaternion to transform with
  */
 export function transformQuat(out: vec4_64, a: ReadonlyVec4_64, q: ReadonlyQuat_64): void {
-  const x = a[0],
-    y = a[1],
-    z = a[2];
-  const qx = q[0],
-    qy = q[1],
-    qz = q[2],
-    qw = q[3];
-
-  // calculate quat * vec
-  const ix = qw * x + qy * z - qz * y;
-  const iy = qw * y + qz * x - qx * z;
-  const iz = qw * z + qx * y - qy * x;
-  const iw = -qx * x - qy * y - qz * z;
-
-  // calculate result * inverse quat
-  out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-  out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-  out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
-  out[3] = a[3];
+  assert_64(out);
+  assert_64(a);
+  assert_64(q);
+  f_vec4_64.transformQuat(out, a, q);
 }
 
 /**
@@ -468,10 +365,8 @@ export function transformQuat(out: vec4_64, a: ReadonlyVec4_64, q: ReadonlyQuat_
  * @param {vec4_64} out the receiving vector
  */
 export function zero(out: vec4_64): void {
-  out[0] = 0.0;
-  out[1] = 0.0;
-  out[2] = 0.0;
-  out[3] = 0.0;
+  assert_64(out);
+  f_vec4_64.zero(out);
 }
 
 /**
@@ -482,7 +377,9 @@ export function zero(out: vec4_64): void {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function exactEquals(a: ReadonlyVec4_64, b: ReadonlyVec4_64): boolean {
-  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+  assert_64(a);
+  assert_64(b);
+  return f_vec4_64.exactEquals(a, b);
 }
 
 /**
@@ -493,22 +390,7 @@ export function exactEquals(a: ReadonlyVec4_64, b: ReadonlyVec4_64): boolean {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a: ReadonlyVec4_64, b: ReadonlyVec4_64): boolean {
-  const a0 = a[0],
-    a1 = a[1],
-    a2 = a[2],
-    a3 = a[3];
-  const b0 = b[0],
-    b1 = b[1],
-    b2 = b[2],
-    b3 = b[3];
-  return (
-    Math.abs(a0 - b0) <=
-      0.000001 * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-    Math.abs(a1 - b1) <=
-      0.000001 * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-    Math.abs(a2 - b2) <=
-      0.000001 * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-    Math.abs(a3 - b3) <=
-      0.000001 * Math.max(1.0, Math.abs(a3), Math.abs(b3))
-  );
+  assert_64(a);
+  assert_64(b);
+  return f_vec4_64.equals(a, b);
 }

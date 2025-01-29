@@ -1,7 +1,7 @@
 import { AngleOrder } from '../AngleOrder.js';
-import * as vec3_fns from './vec3_32.js';
-import * as vec4_fns from './vec4_32.js';
-import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from './types_32.js';
+import * as f_vec3_32 from './vec3_32.js';
+import * as f_vec4_32 from './vec4_32.js';
+import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '..//types_32.js';
 
 /**
  * Quaternion in the format XYZW
@@ -85,7 +85,7 @@ export function getAxisAngle(out_axis: vec3_32, q: ReadonlyQuat_32): number {
  * @return {Number}     Angle, in radians, between the two quaternions
  */
 export function getAngle(a: ReadonlyQuat_32, b: ReadonlyQuat_32): number {
-  const dotproduct = vec4_fns.dot(a, b);
+  const dotproduct = f_vec4_32.dot(a, b);
 
   return Math.acos(2 * dotproduct * dotproduct - 1);
 }
@@ -253,7 +253,7 @@ export function ln(out: quat_32, a: ReadonlyQuat_32): void {
  */
 export function pow(out: quat_32, a: ReadonlyQuat_32, b: number): void {
   ln(out, a);
-  vec4_fns.scale(out, out, b);
+  f_vec4_32.scale(out, out, b);
   exp(out, out);
 }
 
@@ -447,7 +447,7 @@ export function fromEuler(out: quat_32, x: number, y: number, z: number, order: 
  * @returns {Boolean} True if the quaternions are equal, false otherwise.
  */
 export function equals(a: ReadonlyQuat_32, b: ReadonlyQuat_32): boolean {
-    return Math.abs(vec4_fns.dot(a, b)) >= 1 - 0.000001;
+    return Math.abs(f_vec4_32.dot(a, b)) >= 1 - 0.000001;
 }
 
 /**
@@ -461,16 +461,16 @@ export function equals(a: ReadonlyQuat_32, b: ReadonlyQuat_32): boolean {
  * @param {ReadonlyVec3_32} b the destination vector
  */
 export const rotationTo = (function () {
-  const tmpvec3 = vec3_fns.create();
-  const xUnitVec3 = vec3_fns.fromValues(1, 0, 0);
-  const yUnitVec3 = vec3_fns.fromValues(0, 1, 0);
+  const tmpvec3 = f_vec3_32.create();
+  const xUnitVec3 = f_vec3_32.fromValues(1, 0, 0);
+  const yUnitVec3 = f_vec3_32.fromValues(0, 1, 0);
 
   return function (out: quat_32, a: ReadonlyVec3_32, b: ReadonlyVec3_32): void {
-    const dot = vec3_fns.dot(a, b);
+    const dot = f_vec3_32.dot(a, b);
     if (dot < -0.999999) {
-      vec3_fns.cross(tmpvec3, xUnitVec3, a);
-      if (vec3_fns.length(tmpvec3) < 0.000001) vec3_fns.cross(tmpvec3, yUnitVec3, a);
-      vec3_fns.normalize(tmpvec3, tmpvec3);
+      f_vec3_32.cross(tmpvec3, xUnitVec3, a);
+      if (f_vec3_32.length(tmpvec3) < 0.000001) f_vec3_32.cross(tmpvec3, yUnitVec3, a);
+      f_vec3_32.normalize(tmpvec3, tmpvec3);
       setAxisAngle(out, tmpvec3, Math.PI);
     } else if (dot > 0.999999) {
       out[0] = 0;
@@ -478,12 +478,12 @@ export const rotationTo = (function () {
       out[2] = 0;
       out[3] = 1;
     } else {
-      vec3_fns.cross(tmpvec3, a, b);
+      f_vec3_32.cross(tmpvec3, a, b);
       out[0] = tmpvec3[0];
       out[1] = tmpvec3[1];
       out[2] = tmpvec3[2];
       out[3] = 1 + dot;
-      vec4_fns.normalize(out, out);
+      f_vec4_32.normalize(out, out);
     }
   };
 })();
