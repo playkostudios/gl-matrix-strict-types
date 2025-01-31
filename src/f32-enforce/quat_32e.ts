@@ -1,5 +1,5 @@
 import { type AngleOrder } from '../AngleOrder.js';
-import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '..//types_32.js';
+import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '../types_32.js';
 import * as f_quat_32 from '../f32/quat_32.js';
 export { create } from '../f32/quat_32.js';
 import { assert_32 } from './assert_32.js';

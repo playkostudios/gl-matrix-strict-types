@@ -1,5 +1,5 @@
 import { type AngleOrder } from '../AngleOrder.js';
-import { type vec3_64, type quat_64, type ReadonlyVec3_64, type ReadonlyQuat_64 } from '..//types_64.js';
+import { type vec3_64, type quat_64, type ReadonlyVec3_64, type ReadonlyQuat_64 } from '../types_64.js';
 import * as f_quat_64 from '../f64/quat_64.js';
 export { create } from '../f64/quat_64.js';
 import { assert_64 } from './assert_64.js';

@@ -1,4 +1,4 @@
-import { type vec4_64, type ReadonlyMat4_64, type ReadonlyQuat_64, type ReadonlyVec4_64 } from '..//types_64.js';
+import { type vec4_64, type ReadonlyMat4_64, type ReadonlyQuat_64, type ReadonlyVec4_64 } from '../types_64.js';
 import * as f_vec4_64 from '../f64/vec4_64.js';
 export { create, fromValues } from '../f64/vec4_64.js';
 import { assert_64 } from './assert_64.js';

@@ -1,4 +1,4 @@
-import { type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '..//types_32.js';
+import { type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '../types_32.js';
 
 /**
  * 3 Dimensional Vector

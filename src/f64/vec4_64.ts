@@ -1,4 +1,4 @@
-import { type vec4_64, type ReadonlyMat4_64, type ReadonlyQuat_64, type ReadonlyVec4_64 } from '..//types_64.js';
+import { type vec4_64, type ReadonlyMat4_64, type ReadonlyQuat_64, type ReadonlyVec4_64 } from '../types_64.js';
 
 /**
  * 4 Dimensional Vector

@@ -1,4 +1,4 @@
-import { type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '..//types_32.js';
+import { type vec3_32, type ReadonlyMat4_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '../types_32.js';
 import * as f_vec3_32 from '../f32/vec3_32.js';
 export { create, fromValues } from '../f32/vec3_32.js';
 import { assert_32 } from './assert_32.js';

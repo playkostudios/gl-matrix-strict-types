@@ -33,4 +33,4 @@ export * as quat from './quat_64e.js';
 export * as quat2 from './quat2_64e.js';
 export * as vec3 from './vec3_64e.js';
 export * as vec4 from './vec4_64e.js';
-export * from '..//types_64.js';
+export * from '../types_64.js';

@@ -1,7 +1,7 @@
 import * as f_quat_64 from './quat_64.js';
 import * as f_mat4_64 from './mat4_64.js';
 import * as f_vec4_64 from './vec4_64.js';
-import { type quat2_64, type vec3_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64, type ReadonlyQuat2_64 } from '..//types_64.js';
+import { type quat2_64, type vec3_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64, type ReadonlyQuat2_64 } from '../types_64.js';
 
 /**
  * Dual Quaternion<br>

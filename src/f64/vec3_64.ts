@@ -1,4 +1,4 @@
-import { type vec3_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64 } from '..//types_64.js';
+import { type vec3_64, type ReadonlyMat4_64, type ReadonlyVec3_64, type ReadonlyQuat_64 } from '../types_64.js';
 
 /**
  * 3 Dimensional Vector

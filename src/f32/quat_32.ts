@@ -1,7 +1,7 @@
 import { AngleOrder } from '../AngleOrder.js';
 import * as f_vec3_32 from './vec3_32.js';
 import * as f_vec4_32 from './vec4_32.js';
-import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '..//types_32.js';
+import { type vec3_32, type quat_32, type ReadonlyVec3_32, type ReadonlyQuat_32 } from '../types_32.js';
 
 /**
  * Quaternion in the format XYZW
